@@ -22,17 +22,17 @@ class VPrincipal():
         #generar label 1 yentrada 1 para indicar donde debe ingresar nombre
         self.label1 = Label(self.master, text="Nombre:").place(x=10,y=10)
         self.entry1 = Entry(self.master, bd =2)
-        self.entry1.pack()
+        #self.entry1.pack()
         self.entry1.place(x=75,y=10)
         #generar label 2 y entrada 2 para indicar donde debe ingresar apellido
         self.label2 = Label(self.master, text="Apellido:").place(x=10,y=40)
         self.entry2 = Entry(self.master, bd =2)
-        self.entry2.pack()
+        #self.entry2.pack()
         self.entry2.place(x=75,y=40)
         #generar label 3 y entrada 3 para indicar donde debe ingresar apellido   
         self.label3 = Label(self.master, text="Cedula:").place(x=10,y=70)
         self.entry3 = Entry(self.master, bd =2)
-        self.entry3.pack()
+        #self.entry3.pack()
         self.entry3.place(x=75,y=70)
      #############################################################################################        
      #funcion para inicialiciar la ventana secundaria
@@ -49,6 +49,17 @@ class VPrincipal():
         #generar label 6 para indicar el id, ventana 2  
         self.label6 = Label(self.second, text="Cedula:").place(x=10,y=70)
 
+        #generar labels para mostrar informacion
+        #generar label 7 para mostrar el nombre, ventana 2
+        self.label7 = Label(self.second, text='')
+        self.label7.place(x=75,y=10)
+        #generar label 8 para mostrar el apellido, ventana 2
+        self.label8= Label(self.second, text='')
+        self.label8.place(x=75,y=40)
+        #generar label 9 para mostrar el id, ventana 2  
+        self.label9 = Label(self.second, text='')
+        self.label9.place(x=75,y=70)
+        
           
         self.second.withdraw()  
      #############################################################################################                     
@@ -57,13 +68,13 @@ class VPrincipal():
         self.nombre  =self.entry1.get()
         self.apellido=self.entry2.get()
         self.id      =self.entry3.get()
-        #generar labels para mostrar informacion
-        #generar label 7 para mostrar el nombre, ventana 2
-        self.label7 = Label(self.second, text=self.nombre).place(x=75,y=10)
-        #generar label 8 para mostrar el apellido, ventana 2
-        self.label8= Label(self.second, text=self.apellido).place(x=75,y=40)
-        #generar label 9 para mostrar el id, ventana 2  
-        self.label9 = Label(self.second, text=self.id).place(x=75,y=70)
+        #mostrar informacion en ventana 2, usando los labels ya generados
+        #usar label 7 para mostrar el nombre, ventana 2
+        self.label7['text'] = self.nombre
+        #usar label 8 para mostrar el apellido, ventana 2
+        self.label8['text'] = self.apellido
+        #usar label 9 para mostrar el id, ventana 2  
+        self.label9['text'] = self.id
         
         self.second.deiconify() 
         self.master.withdraw()                
