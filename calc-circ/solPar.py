@@ -10,10 +10,9 @@ def text2numbers(lines):
     x=[]
     numID=[]
     for line in lines:
-      #de cada linea cada numero e ignorar el cambio de linea
-      #que es el ultimo caracter
+      #leer el dato de cada linea e ignorar el cambio de linea
       data = line[:-1]
-      #converti(x[-1:],x[-2:-1])r a flotantes y apilar en la lista X
+      #convertir (x[-1:],x[-2:-1]) a flotantes y apilar en la lista x
       x.append([float(data[-1:]), float(data[-2:-1])])
       numID.append(data)
     #convertir la lista a un arreglo numpy
@@ -24,27 +23,25 @@ file_name='data.txt'
 hf = open(file_name,'r')
 lines=hf.readlines()
 hf.close()
-#convertir los datos a valores numericos, la primer columna es el tiempo, la segunda datos
-#se separan en vectores diferentes y se calcula la frecuencia de muestreo
+#convertir los datos a valores numericos
 x,numID=text2numbers(lines)
-
 #definir parametros del circuito
-f=60
-L=10e-3
-w=2*np.pi*f
-z1=2
-z2=1
-z3=1j*w*L
+f  = 60         #frecuencia en Hz
+L  = 10e-3      #valor del inductor
+w  = 2*np.pi*f  #frecuencia angular en rad/seg
+z1 = 2          #resistencia 1
+z2 = 1          #resistencia 2
+z3 = 1j*w*L     #impedancia debida al inductor
 #     
-#     ____________________________________
-#    |--> I1  |____|    | --> I2 |____|   |
-#    |          z1      |          z3     |
-#  /   \               _|                _|
-# |  ~  | V           | |               | |
-#  \ _ /              | | z2            | |z4
-#    |                |_|               |_|
-#    |                  |                 |
-#    |__________________|_________________|
+#     _____________________________________
+#    |--> I1  |____|    | --> I2  |____|   |
+#    |          z1      |           z3     |
+#  /   \               _|                 _|
+# |  ~  | V           | |                | |
+#  \ _ /              | | z2             | |z4
+#    |                |_|                |_|
+#    |                  |                  |
+#    |__________________|__________________|
 #
 for ii in np.arange(x.shape[0]):
     d=x[ii]
@@ -68,17 +65,20 @@ for ii in np.arange(x.shape[0]):
     if (da==0)&(db==0): 
        da=9.
        db=3.*1e-3
+    #definir los valores que dependen del numero de identidad
     V=da+db*1e3
     z4=da+1/(1j*w*db)
     
-    A =np.array([[z1+z2, -z2],\
-                 [-z2  , z2+z3+z4]])
+    #representar en forma matricial y resolver
+    A =np.array([[z1+z2,  -z2],\
+                 [-z2  ,  z2+z3+z4]])
                  
-    A1=np.array([[V  ,  -z2],\
-                 [0.0,  z2+z3+z4]])
+    A1=np.array([[V    ,  -z2],\
+                 [0.0  ,  z2+z3+z4]])
                  
-    A2=np.array([[z1+z2, V],\
-                 [-z2  , 0.0]])
+    A2=np.array([[z1+z2,  V],\
+                 [-z2  ,  0.0]])
+                
     print('#########################################')
     print('Solucion para', d, ids)
     print(A)
