@@ -13,6 +13,9 @@ sudo apt-get install mpg321
 pip install gtts
 
 3) usar espeak 
-que es el que usted estaba usando, en este caso encontre que no esnecesario usar el espeak-python ya que se puede llamar directamente
+que es el que usted estaba usando, en este caso no es necesario usar el espeak-python ya que se puede llamar directamente desde la aplicacion instalada en el sistema
+para instalar espeak:
 
-estoy adjuntando tres ejemplos, para el segundo necesta conetarse a internet
+sudo apt-get install espeak
+
+

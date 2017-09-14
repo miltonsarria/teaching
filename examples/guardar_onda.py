@@ -9,7 +9,7 @@ fs=20e3
 t,T=np.linspace(1./fs,10,fs*10,retstep=True);
 nFs=1/T;
 
-w=2*np.pi*3
+w=2*np.pi*5
 Vm=10
 x1=Vm*np.sign(np.cos(w*t))
 x2=Vm*signal.sawtooth(w*t)
@@ -25,7 +25,7 @@ X3=X3.transpose()
 
 np.savetxt('cuadrada1.txt', X1, fmt='%5.5f', delimiter=',', newline='\n', header='', footer='', comments='# ')
 np.savetxt('cuadrada2.txt', X3, fmt='%5.5f', delimiter=',', newline='\n', header='', footer='', comments='# ')
-np.savetxt('sierra.txt', X2, fmt='%5.5f', delimiter=',', newline='\n', header='', footer='', comments='# ')
+np.savetxt('sierra1.txt', X2, fmt='%5.5f', delimiter=',', newline='\n', header='', footer='', comments='# ')
 
 plt.plot(t,x1)
 plt.plot(t,x2)

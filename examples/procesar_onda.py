@@ -39,41 +39,55 @@ hf.close()
 x=text2numbers(lines)
 t=x[:,0]
 y=x[:,1]
-#fs es el inverso del periodo de muestreo, o la separacion en tiempo de dos muestras consecutivas
-dt=t[1]-t[0] #incremento discreto o tiempo de muestreo
+#fs es el inverso del periodo de muestreo, o la separacion, en tiempo, entre dos muestras consecutivas
+dt=t[1]-t[0] #incremento discreto o tiempo de muestreo Ts
 Fs=1./(dt)   #frecuencia de muestreo (inverso del tiempo de muestreo)
 dF=Fs/x.size #incremento discreto en frecuencia
-plt.subplot(211)
+
+plt.figure(1)
 plt.plot(x[:,0],x[:,1])
 plt.xlabel('tiempo - secs')
 plt.ylabel('amplitud - volts')
-
+###########################################
 #aplicar transformada de fourier a los datos
 Y = fft(y)
-#calcular la magnitud de la primera parte del espectro
-hN=int(math.floor((Y.size+1)/2))
 
-absY = abs(Y[:hN])/(y.size)                               # Calcular el valor absoluto del lado positivo y normalizar por el num de muestras
-absY[absY < np.finfo(float).eps] = np.finfo(float).eps    # Si hay ceros, reemplazar por un valor muy pequeno, para aplicar el log
+# Calcular magnitud y angulo, normalizar por el num de muestras
+absY = abs(Y)/(y.size)                               
+#fase
+pY = np.unwrap(np.angle(Y))
+
+#reorganizar el espectro para graficar
+#numero de muestras hasta la mitad del espectro
+hN=int(math.floor((Y.size+1)/2))
+absY=np.hstack((absY[hN:],absY[:hN]))
+pY=np.hstack((pY[hN:],pY[:hN]))
+
+#calcular el la magnitud en dB
+absY[absY < np.finfo(float).eps] = np.finfo(float).eps    # Si hay ceros, reemplazar por un valor muy pequeno, antes de aplicar el log
 mY = 20 * np.log10(absY) 
 
-#vector de frecuencias, desde 0 a fs/2
-f=np.linspace(0,Fs/2,hN)
-plt.subplot(212)
+#vector de frecuencias, desde -fs/2 a fs/2  (-pi<w<pi)
+f=np.linspace(-Fs/2,Fs/2,Y.size)
 
-#graficar las primeras 1000 muestras, esto se puede modificar a conveniencia
+
+#se grafican las 1000 muestras del lado positivo y 1000 muestras del lado negativo, esto se puede modificar a conveniencia
+#y dependiendo del numero de muestras que se tengan
 Nplot=1000
-plt.stem(f[:Nplot],absY[:Nplot])
+
+plt.figure(2)
+plt.subplot(311)
+plt.plot(f[hN-Nplot:hN+Nplot],absY[hN-Nplot:hN+Nplot])
+plt.ylabel('|Y|')
+
+plt.subplot(312)
+plt.plot(f[hN-Nplot:hN+Nplot],mY[hN-Nplot:hN+Nplot])
+plt.ylabel('En dB (20log10(|Y|)')
+
+plt.subplot(313)
+plt.plot(f[hN-Nplot:hN+Nplot],pY[hN-Nplot:hN+Nplot])
+plt.ylabel('Angulo o fase rad')
+
 plt.xlabel('Frecuencia - Hz')
-plt.ylabel('Magnitud del espectro')
+
 plt.show()
-
-
-
-
-
-
-
-
-
-
