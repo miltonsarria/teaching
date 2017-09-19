@@ -3,8 +3,8 @@
 ## para aprender a usar el interprete de python, ejecutar algunos comandos para realizar operaciones basicas. Es necesario aclarar que el interprete normalmente no se usa directamente, por lo que no es practico digitar un comando a la vez
 
 
-### SUMA, RESTA, MULTIPLICACION,DIVISION 
-despues de cada comando presionar enter para ver el resultado
+### SUMA, RESTA, MULTIPLICACION,DIVISION, EXPONENTES
+**despues de cada comando presionar enter para ver el resultado**
 
 
 ```python
@@ -20,7 +20,7 @@ despues de cada comando presionar enter para ver el resultado
 10
 ```
 
-### Tener cuidado al dividir enteros y esperar un flotante
+**Tener cuidado al dividir enteros y esperar un flotante**
 
 ```python
 > 21/3
@@ -31,7 +31,7 @@ despues de cada comando presionar enter para ver el resultado
 7.6666
 ```
 
-### CALCULAR EL RESIDUO
+**CALCULAR EL RESIDUO**
 ```python
 > 23%3
 2
@@ -39,7 +39,7 @@ despues de cada comando presionar enter para ver el resultado
 9
 ```
 
-### EXPONENTES (5^2 cinco al cuadrado)
+**EXPONENTES (5^2 cinco al cuadrado)**
 
 ```python
 > 5**2
@@ -54,7 +54,7 @@ despues de cada comando presionar enter para ver el resultado
 ```
 
 ## ORDEN DE LAS OPERACIONES
-### ANALIZAR LAS SIGUIENTES OPERACIONES
+**ANALIZAR LAS SIGUIENTES OPERACIONES**
 ```python
 > 1 + 2 * 3
 7
@@ -69,13 +69,15 @@ despues de cada comando presionar enter para ver el resultado
 ```
 
 
-Luego de haber ejecutado esos comandos, lo mas practico es guardar la secuencia de comandos que se quieren ejecutar en un
-archivo de texto con extencion .py y ejecutarlo de forma externa, suponiendo que su archivo es miprograma.py
+Luego de haber ejecutado los comandos anteriores, lo mas practico es guardar la secuencia de comandos que se quieren ejecutar en un
+archivo de texto con extencion *.py y ejecutarlo de forma externa, suponiendo que su archivo es miprograma.py
 para tal efecto se ejectua:
 
+```python
 $python miprograma.py
+```
 
-Los ejemplos se adjuntan como archivos separados, es necesario analizar cada uno y ejecutarlos
+Los ejemplos se adjuntan como archivos separados, es necesario analizar cada uno y ejecutarlos, se puede usar por ejemplo spyder
 
 
 
