@@ -22,39 +22,40 @@ despues de cada comando presionar enter para ver el resultado
 
 ### Tener cuidado al dividir enteros y esperar un flotante
 
-
+```python
 > 21/3
 7
 > 23/3
 7
 > 23.0/3.0
 7.6666
-
+```
 
 ### CALCULAR EL RESIDUO
-
+```python
 > 23%3
 2
 > 49%10
 9
-
+```
 
 ### EXPONENTES (5^2 cinco al cuadrado)
 
-
+```python
 > 5**2
 25
-
+```
 
 ### IMPRIMIR UN MENSAJE EN PANTALLA
-
+```python
 > print("1 + 2 es una suma")
 
 > print("un kilobyte es 2^10 bytes, o", 2**10, "bytes")
-
+```
 
 ## ORDEN DE LAS OPERACIONES
 ### ANALIZAR LAS SIGUIENTES OPERACIONES
+```python
 > 1 + 2 * 3
 7
 > (1 + 2) * 3
@@ -65,7 +66,7 @@ despues de cada comando presionar enter para ver el resultado
 -33
 
 >quit()
-
+```
 
 
 Luego de haber ejecutado esos comandos, lo mas practico es guardar la secuencia de comandos que se quieren ejecutar en un
