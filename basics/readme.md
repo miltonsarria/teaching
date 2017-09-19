@@ -7,7 +7,7 @@
 despues de cada comando presionar enter para ver el resultado
 
 
-
+```python
 > 1 + 1
 2
 > 20+80
@@ -18,7 +18,7 @@ despues de cada comando presionar enter para ver el resultado
 1
 > 2*5
 10
-
+```
 
 ### Tener cuidado al dividir enteros y esperar un flotante
 
@@ -66,7 +66,8 @@ despues de cada comando presionar enter para ver el resultado
 
 >quit()
 
-###########################################################################################################
+
+
 Luego de haber ejecutado esos comandos, lo mas practico es guardar la secuencia de comandos que se quieren ejecutar en un
 archivo de texto con extencion .py y ejecutarlo de forma externa, suponiendo que su archivo es miprograma.py
 para tal efecto se ejectua:
