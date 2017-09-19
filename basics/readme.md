@@ -1,4 +1,4 @@
-# en esta carpeta se incluyen codigos basicos y programas elementales que ayudan a entender la logica de programacion en python
+# En esta carpeta se incluyen codigos basicos y programas elementales que ayudan a entender la logica de programacion en python
 
 ## para aprender a usar el interprete de python, ejecutar algunos comandos para realizar operaciones basicas. Es necesario aclarar que el interprete normalmente no se usa directamente, por lo que no es practico digitar un comando a la vez
 
