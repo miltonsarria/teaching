@@ -1,6 +1,6 @@
 # En esta carpeta se incluyen codigos basicos y programas elementales que ayudan a entender la logica de programacion en python
 
-## para aprender a usar el interprete de python, ejecutar algunos comandos para realizar operaciones basicas. Es necesario aclarar que el interprete normalmente no se usa directamente, por lo que no es practico digitar un comando a la vez
+## Para aprender a usar el interprete de python, ejecutar algunos comandos para realizar operaciones basicas. Es necesario aclarar que el interprete normalmente no se usa directamente, por lo que no es practico digitar un comando a la vez
 
 
 ### SUMA, RESTA, MULTIPLICACION,DIVISION, EXPONENTES
@@ -31,7 +31,7 @@
 7.6666
 ```
 
-**CALCULAR EL RESIDUO**
+**calcular residuo**
 ```python
 > 23%3
 2
@@ -39,7 +39,7 @@
 9
 ```
 
-**EXPONENTES (5^2 cinco al cuadrado)**
+**Exponentes (5^2 cinco al cuadrado)**
 
 ```python
 > 5**2
@@ -54,7 +54,7 @@
 ```
 
 ## ORDEN DE LAS OPERACIONES
-**ANALIZAR LAS SIGUIENTES OPERACIONES**
+**Analizar el orden en que se realizan las siguientes operaciones**
 ```python
 > 1 + 2 * 3
 7
@@ -68,7 +68,7 @@
 >quit()
 ```
 
-
+---
 Luego de haber ejecutado los comandos anteriores, lo mas practico es guardar la secuencia de comandos que se quieren ejecutar en un
 archivo de texto con extencion *.py y ejecutarlo de forma externa, suponiendo que su archivo es miprograma.py
 para tal efecto se ejectua:
