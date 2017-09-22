@@ -6,12 +6,12 @@
 
 
 # Porristas
-print("Ejemplo 1: porras")
+print(" Ejemplo 1: porras")
 
 try:
-  word = input("Cual es su equipo de futbol favorito? ")
+  word = input("Python 3: Cual es su equipo de futbol favorito? ")
 except:
-  word = raw_input("Python 2.7: Cual es su equipo favorito? ")
+  word = raw_input("Python 2: Cual es su equipo de futbol favorito? ")
 
 
 for letter in word:
@@ -20,9 +20,10 @@ for letter in word:
     print(letter + "!")
 
 print("Que dice?!!")
-print(word + "!")
+print(word + "!!!!!!")
 
 
+print("\n\n ---------------")
 print("Ejemplo 2: indices")
 #ejemplo 2
 #definir una lista de indices

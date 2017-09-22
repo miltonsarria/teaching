@@ -13,7 +13,7 @@ print(months)
 # se puede representar de la siguiente forma
 
 #Indice	  Valor
-#-----------
+#-----------------
 #0	  January
 #1	  Feb
 #2	  Mar
@@ -89,7 +89,7 @@ print("Las personas tienen las siguientes edades", \
 edades.values())
 
 print("\n\n-------------------")
-#que operaciones se realizan y que se imprime despues de las siguientes instrucciones?
+#que operaciones se realizan y que se imprime despues de las siguientes instrucciones? poner comentarios
 keys=list(edades.keys())
 print(keys)
 keys.sort()
