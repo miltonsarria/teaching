@@ -1,17 +1,17 @@
-#example taken from scipy documentation
+#Milton Orlando Sarria
+#filtrado elemental de ruido sinusoidal
 from scipy import signal
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-#disenar el filtro usando una ventana kaiser
+#disenar el filtro usando una ventana hamming
 b = signal.firwin(9, 0.5, window='hamming', pass_zero=True)
-#pasa bajas pass_zero=True
-#pasa altas pass_zero=False
 
+#definir la frecuencia de muestreo y generar un vector de tiempo hasta 5 segundos
 fs=1e3
 t,T=np.linspace(1./fs,5,fs*5,retstep=True);
-nFs=1/T;
+
 
 F=10            #frecuencia fundamental 10 hz
 w=2*np.pi*5     #frecuencia angular
@@ -25,11 +25,9 @@ x=2*np.cos(2*np.pi*370*t)
 yx=y+x
 
 #filtrar la onda con ruido usando el filtro FIR
-
 yf=signal.lfilter(b, [1.0],yx)
 
-
-
+#visualizar las tres ondas, limpia, contaminada y filtrada
 plt.subplot(311)
 plt.plot(t,y)
 plt.title('onda sin ruido')

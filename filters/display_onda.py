@@ -2,14 +2,10 @@
 #USC 2017
 #analisis de fourier para datos de ondas periodicas guardados en archivos de texto
 #la onda se ha contaminado con ruido sinusoidal
-
-
-
 import matplotlib.pyplot as plt
 import numpy as np
-import math
-from scipy.fftpack import fft
-from scipy import signal
+#importar la funcion para hacer el analisis de fourier
+from fourierFunc import fourierAn
 
 ##################################################################################
 ##################################################################################
@@ -31,7 +27,9 @@ def text2numbers(lines):
 ##################################################################################
 
 #lectura del archivo de texto donde se encuentran los datos
-file_name='sierra_ruido_ran.txt'
+file_name='sierra_ruido_sin.txt'
+#file_name='sierra_ruido_ran.txt'
+
 hf = open(file_name,'r')
 lines=hf.readlines()
 hf.close()
@@ -51,24 +49,9 @@ plt.xlabel('tiempo - secs')
 plt.ylabel('amplitud - volts')
 ###########################################
 #aplicar transformada de fourier a los datos
-Y = fft(y)
-# Calcular magnitud y angulo, normalizar por el num de muestras
-absY = abs(Y)/(y.size)                               
-#fase
-pY = np.unwrap(np.angle(Y))
-###########################################
-#reorganizar el espectro para graficar
-#numero de muestras hasta la mitad del espectro
-hN=int(math.floor((Y.size+1)/2))
-absY=np.hstack((absY[hN:],absY[:hN]))
-pY=np.hstack((pY[hN:],pY[:hN]))
-
-#calcular la magnitud en dB
-absY[absY < np.finfo(float).eps] = np.finfo(float).eps    # Si hay ceros, reemplazar por un valor muy pequeno, antes de aplicar el log
-mYdb = 20 * np.log10(absY) 
-
+absY,mYdb,pY=fourierAn(y)
 #vector de frecuencias, desde -fs/2 a fs/2  (-pi<w<pi)
-f=np.linspace(-Fs/2,Fs/2,Y.size)
+f=np.linspace(-Fs/2,Fs/2,absY.size)
 
 #se grafican las 3000 muestras del lado positivo y 1000 muestras del lado negativo, esto se puede modificar a conveniencia
 #y dependiendo del numero de muestras que se tengan

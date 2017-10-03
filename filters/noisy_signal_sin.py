@@ -16,7 +16,7 @@ Vm=10           #valor de amplitud de la onda
 #generar onda diente de sierra a 10hz y duracion 5 segundos
 y=Vm*signal.sawtooth(w*t)
 #generar onda de ruido sinusoidal, alta frecuencia y baja amplitud
-x=1*np.cos(2*np.pi*488.3*t) + 1*np.cos(2*np.pi*487.1*t) + 1*np.cos(2*np.pi*486.8*t)+1*np.cos(2*np.pi*486.3*t)
+x=1*np.cos(2*np.pi*150.3*t) + 1*np.cos(2*np.pi*151.1*t) + 1*np.cos(2*np.pi*155.8*t)+1*np.cos(2*np.pi*155.9*t)
 #onda con ruido
 yx=y+x
 

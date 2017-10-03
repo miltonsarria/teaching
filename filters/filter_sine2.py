@@ -18,14 +18,13 @@ w=2*np.pi*5     #frecuencia angular
 Vm=4           #valor de amplitud de la onda
 
 #generar onda compuesta de sinusoides
-y=Vm*np.cos(w*t)+Vm/2*np.cos(2*w*t)+Vm/3*np.cos(3*w*t)+Vm/2*np.cos(4*w*t)
+y=Vm*np.cos(w*t)+Vm/2*np.cos(2*w*t+np.deg2rad(45))+Vm/3*np.cos(3*w*t)+Vm/2*np.cos(4*w*t)
 #generar onda de ruido sinusoidal, alta frecuencia y baja amplitud
 x=2*np.cos(2*np.pi*370*t)
 #onda con ruido
 yx=y+x
 
 #filtrar la onda con ruido usando el filtro FIR
-
 yf=signal.lfilter(b, [1.0],yx)
 
 
