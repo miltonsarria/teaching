@@ -5,14 +5,19 @@ import numpy as np
 
 
 #disenar el filtro usando una ventana kaiser
-b = signal.firwin(80, 0.5, window=('kaiser', 8))
+#b = signal.firwin(80, 0.5, window=('kaiser', 8))
+b = signal.firwin(81, 0.5, window='hamming', pass_zero=False)
+
+#pasa bajas pass_zero=True
+#pasa altas pass_zero=False
+#obtener la respuesta en frecuencia
 w, h = signal.freqz(b)
+#opciones de ventanas:
+#boxcar, triang, blackman, hamming, hann, bartlett, flattop, parzen, bohman, blackmanharris, nuttall, barthann, kaiser (necesita un parametro adicional beta), gaussian (necesita la desviacion estandar std), general_gaussian (needs necesita potencia y ancho: power, width), slepian (necesita ancho), chebwin (necesita atenuacion en banda de rechazo)
 
 fig = plt.figure(1)
-
 plt.subplot(211)
 plt.title('Respuesta en frecuencia de filtro digital')
-#ax1 = fig.add_subplot(111)
 plt.plot(w, 20 * np.log10(abs(h)), 'b')
 plt.ylabel('Amplitud [dB]', color='b')
 plt.grid()
@@ -26,60 +31,12 @@ plt.grid()
 plt.xlabel('Frequencia [rad/muestra]')
 plt.axis('tight')
 
-
-### generar secuencias sinusoidales usando dos frecuen
-fs=2000
-tf=1 #tiempo final
-t,T=np.linspace(1./fs,tf,fs*tf,retstep=True)
-#
-f1=200.
-w1=2*np.pi*f1
-x1=np.cos(w1*t)
-#
-f2=600.
-w2=2*np.pi*f2
-x2=np.cos(w2*t)
-
-x1f=signal.lfilter(b, [1.0],x1)
-x2f=signal.lfilter(b, [1.0],x2)
-
 fig = plt.figure(2)
-plt.subplot(211)
-plt.title('Caso 1: Frecuencia de muestreo 2kHz, f1=200, f2=600')
-plt.plot(t,x1,t,x1f)
-plt.ylabel('Amplitud')
-
-plt.subplot(212)
-plt.plot(t,x2,t,x2f)
-plt.ylabel('Amplitud')
-plt.xlabel('tiempo - s')
-##########
-fs=100
-t,T=np.linspace(1./fs,tf,fs*tf,retstep=True)
-#
-f1=10.
-w1=2*np.pi*f1
-x1=np.cos(w1*t)
-#
-f2=30.
-w2=2*np.pi*f2
-x2=np.cos(w2*t)
-
-x1f=signal.lfilter(b, [1.0],x1)
-x2f=signal.lfilter(b, [1.0],x2)
-
-fig = plt.figure(3)
-plt.subplot(211)
-plt.title('Caso 2: Frecuencia de muestreo 100,  f1=10, f2=30')
-plt.plot(t,x1,t,x1f)
-plt.ylabel('Amplitud')
-
-plt.subplot(212)
-plt.plot(t,x2,t,x2f)
-plt.ylabel('Amplitud')
-plt.xlabel('tiempo - s')
-
-
+plt.stem(b, '-.b')
+plt.xlabel('valor de n')
+plt.ylabel('valor de h[n]')
+plt.title('Respuesta a impulso del filtro h[n]')
+plt.show()
 
 
 plt.show()
