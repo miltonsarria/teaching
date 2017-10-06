@@ -4,7 +4,7 @@
 print( "Este programa es un demo para demostrar el uso de variables")
 #asignar a v un valor
 v = 1
-print( "El valor de v es: ", v)
+print("El valor de v es: ", v)
 #realizar una operacion con v
 v = v + 1
 

@@ -1,3 +1,6 @@
+### many of the tools for continuous-time system analysis is in scipy.signal here there is an alternative tool that can be used
+
+
 **To install the control system library for python**
 
 Install fortran compiler
