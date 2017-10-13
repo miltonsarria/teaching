@@ -5,6 +5,10 @@
 import numpy as np
 import math
 from sympy import  *
+import control as ctrl
+import matplotlib.pyplot as plt
+from scipy import signal
+
 
 def text2numbers(lines):
     x=[]
@@ -32,17 +36,21 @@ s=Symbol('s')
 #    |--> I1  |____|    | --> I2           |  --> Vo
 #    |          z1      |                  |
 #  /   \               _|                 _|
-# |  ~  | V           | |                | |
+# |  ~  | Vi          | |                | |
 #  \ _ /              | | z2             | |z3
 #    |                |_|                |_|
 #    |                  |                  |
 #    |__________________|__________________|
 #
+
+w=np.array([3,30,300])
+
 for ii in np.arange(x.shape[0]):
     d=x[ii]
     ids=numID[ii]
     da=d[0]
     db=d[1]
+    '''
     #casos especiales    #########################
     if (ids=='1144072458')|(ids=='1085899072')|(ids=='1118305239'):
        da=d[1]
@@ -55,10 +63,11 @@ for ii in np.arange(x.shape[0]):
        da=2.
        db=8.
     ##################################################
-        
-    if (da==0)&(db==0): 
-       da=9.
-       db=3.
+    '''    
+    if (da==0): 
+       da=5.
+    if (db==0):
+       db=5.
     #definir los valores que dependen del numero de identidad
     Z1=da
     Z2=da+s*db
@@ -69,15 +78,49 @@ for ii in np.arange(x.shape[0]):
     
     num=[db**2, da*db, 0]
     den=[db**2,3*da*db,da**2]
-    
-    
+    #G = ctrl.tf(num, den)
+        
     print('#########################################')
-    print('Solucion para', d, ids)
-    print(simplify(Vd))
+    print('Solucion para', [da, db], ids)
+    print('vd',simplify(Vd))
+    print('ze',simplify(Ze))
     print(num)    
     print(den)
     
-   
+    G1=signal.lti(num, den)
+    
+    omega, mag, phase  = signal.bode(G1)
+    plt.subplot(211)
+    
+    plt.semilogx(omega, mag); 
+    plt.grid()
+    plt.title('Respuesta en frecuencia1');
+    plt.ylabel('Magnitud');
+    
+    ###### punto 2
+    H=db/(1+1j*w)+db/(da+1j*w)
+    HdB=20*np.log10(abs(H))
+    print 'H ',abs(H)
+    print 'Hdb ', HdB
+    
+    num=[2*db, da*db+db]
+    den=[1,da+1,da]
+    print(num)    
+    print(den)
+    #G2 = ctrl.tf(num, den)
+    #mag, phase, omega = ctrl.bode(G2)
+    G2=signal.lti(num, den)
+    omega, mag, phase  = signal.bode(G2)
+    
+    plt.subplot(212)
+    plt.semilogx(omega, mag); 
+    plt.grid()
+    plt.title('Respuesta en frecuencia2');
+    plt.ylabel('Magnitud');
+    
+    
+    
+    plt.show()
    
    
    
