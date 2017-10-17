@@ -8,7 +8,7 @@ except ImportError:
     from tkinter import *   ## notice lowercase 't' in tkinter here
 
 #############################################################################################
-class VPrincipal():
+class genInterfaz():
      def __init__(self,tkObject,topObject):
         self.master  = tkObject
         self.second  = topObject        
@@ -96,8 +96,8 @@ def main():
         topObject = Toplevel()#generar la ventana secundaria
         #generar un objeto que contiene informacion relevante y como atributos se
         #van a usar dos objetos TK uno como ventana principal y otro como ventana secundaria
-        ventana1 = VPrincipal(tkObject,topObject) 
-        ventana1.master.mainloop()
+        mainProcess = genInterfaz(tkObject,topObject) 
+        mainProcess.master.mainloop()
  
  
 if __name__ == '__main__':
