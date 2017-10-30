@@ -21,12 +21,12 @@ def hopSamples(x,M):
         un arreglo tipo numpy que contiene elementos cada M muestras de x
     """
      ## Su codigo va a aqui
-    values=np.array([])
+    values=x[0::M]
 
     return values
   
 
-x=np.array([0,1,2,3,4,5,6,7,8,9]) 
-M=2
+x=np.array([1,5,8,9,5,3,8,5,1,0,7,8,1,1,0]) 
+M=3
 y=hopSamples(x,M)
 print(y)

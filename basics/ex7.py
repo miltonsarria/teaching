@@ -1,5 +1,5 @@
 #ciclo FOR
-#el ciclo for permite fe forma iterativa realizar una serie de operaciones desde un punto inicial a un punto final
+#el ciclo for permite de forma iterativa realizar una serie de operaciones desde un punto inicial a un punto final
 #Es un ciclo donde se puede indicar de antemano el numero minimo de iteraciones que la instruccion realizara
 
 #en el siguiente ejemplo se ilustra el funcionamiento basico al imprimir cada una de las letras de una palabra
