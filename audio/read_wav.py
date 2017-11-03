@@ -24,29 +24,29 @@ for dirpath, dirnames, filenames in os.walk(data_dir):
          (X,mX)=wp.enframe(x=x, window = 'hamming', M=M, H=H)
          
          # plot the input sound
-	 plt.subplot(2,1,1)
-	 plt.plot(np.arange(x.size)/float(fs), x)
-	 plt.axis([0, x.size/float(fs), min(x), max(x)])
-	 plt.ylabel('amplitude')
-	 plt.xlabel('time (sec)')
-	 plt.title('input sound: x')
-	
+         plt.subplot(2,1,1)
+         plt.plot(np.arange(x.size)/float(fs), x)
+         plt.axis([0, x.size/float(fs), min(x), max(x)])
+         plt.ylabel('amplitude')
+         plt.xlabel('time (sec)')
+         plt.title('input sound: x')
+         
 
-	
-	# plot magnitude spectrogram
-	 plt.subplot(2,1,2)
-	 numFrames = int(X[:,0].size)
-	 frmTime = H*np.arange(numFrames)/float(fs)                             
-	 binFreq = fs*np.arange(N*maxplotfreq/fs)/N  
-	 plt.pcolormesh(np.transpose(mX[:,:int(N*maxplotfreq/fs+1)]))
-	 plt.xlabel('time (sec)')
-	 plt.ylabel('frequency (Hz)')
-	 plt.title('magnitude spectrogram')
-	 plt.autoscale(tight=True)
-	
-	 plt.show()
-	
-	
+         
+         # plot magnitude spectrogram
+         plt.subplot(2,1,2)
+         numFrames = int(X[:,0].size)
+         frmTime = H*np.arange(numFrames)/float(fs)                             
+         binFreq = fs*np.arange(N*maxplotfreq/fs)/N  
+         plt.pcolormesh(np.transpose(mX[:,:int(N*maxplotfreq/fs+1)]))
+         plt.xlabel('time (sec)')
+         plt.ylabel('frequency (Hz)')
+         plt.title('magnitude spectrogram')
+         plt.autoscale(tight=True)
+         
+         plt.show()
+         
+         
          print X.shape, M, H
          
          
