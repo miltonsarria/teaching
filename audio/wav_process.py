@@ -13,7 +13,7 @@ INT64_FAC = (2**63)-1
 norm_fact = {'int16':INT16_FAC, 'int32':INT32_FAC, 'int64':INT64_FAC,'float32':1.0,'float64':1.0}
 
 #######################
-def enframe(x = None, window = 'hamming', M = 1024, H = 512):
+def enframe(x = None, window = 'hamming', M = 1024, H = 512,N=512):
         """
         inputs:
         x       input signal
@@ -36,31 +36,32 @@ def enframe(x = None, window = 'hamming', M = 1024, H = 512):
                 if (w.size != x1.size):                 # raise error if window size is different to frame size
                    raise ValueError("Window size (M) is different of frame size")
                 xw = x1*w                               # window the frame
-                mx = dftModel(xw)
+                mx,px = magFourier(xw,N)
                 if pin == 0:                            # if first frame, create output array
                         X = np.array([xw])
                         mX = np.array([mx])
+                        pX=np.array([px])
                 else:                                   # append output to existing array 
                         X = np.vstack((X,np.array([xw])))
                         mX = np.vstack((mX,np.array([mx])))
+                        pX=np.vstack((pX,np.array([px])))
                 pin += H                                # advance sound pointer
         return X, mX
         
-def dftModel(xw,N=512):
+def magFourier(xw,N=512):
          """
-         Analysis of a signal using the discrete Fourier transform
-         x: input signal, N: FFT size
-         returns y: output signal
+         Analisis de una senal usando  discrete Fourier transform
+         xw: senal entrada, N: FFT numero de puntos fft
+         returns m: output signal
          """
          if all(xw==0):                                           # if input array is zeros return empty output
                 return np.zeros(xw.size)
-         hN = (N/2)+1                                            # size of positive spectrum, it includes sample 0
+         hN = int(N/2)+1                                            # size of positive spectrum, it includes sample 0
          hM1 = int(math.floor((xw.size+1)/2))                     # half analysis window size by rounding
          hM2 = int(math.floor(xw.size/2))                         # half analysis window size by floor
          fftbuffer = np.zeros(N)                                 # initialize buffer for FFT
          y = np.zeros(xw.size)                                    # initialize output array
          #----analysis--------
-
          fftbuffer[:hM1] = xw[hM2:]                              # zero-phase window in fftbuffer
          fftbuffer[-hM2:] = xw[:hM2]        
          X = fft(fftbuffer)                                      # compute FFT
@@ -68,7 +69,7 @@ def dftModel(xw,N=512):
          absX[absX<np.finfo(float).eps] = np.finfo(float).eps    # if zeros add epsilon to handle log
          mX = 20 * np.log10(absX)                                # magnitude spectrum of positive frequencies in dB     
          pX = np.unwrap(np.angle(X[:hN]))                        # unwrapped phase spectrum of positive frequencies
-         return mX
+         return mX,pX
           
   
         
