@@ -1,3 +1,5 @@
+#Milton Orlando Sarria
+#USC - Cali
 #how to comunicate python with Arduino via serial port 
 #first install pySerial 
 
@@ -5,67 +7,28 @@
 
 #source code can be found in https://github.com/pyserial/pyserial
 
-import serial
+
 import threading
 import time
 import matplotlib.pyplot as plt
 import numpy as np
+from tools import reader, DynamicPlot, GetDisplay, comObj
 
 
-#######################################################################
-#this will read whatever is in the serial port
-class comObje(threading.Thread):
-      def __init__(self,portName,portRate):
-         threading.Thread.__init__(self)         
-         self.data      = '0\r\n'  #initial value
-         self.dataCount = 0        #no data
-         self.read      = False    #flag to read from serial port
-         self.stop      = False    #flag to stop the whole process
-         self.portName  = portName 
-         self.portRate  = portRate        
-         
-      def run(self):   
-        #create the port instance
-        self.serPort = serial.Serial(self.portName, self.portRate) 
-        while not(self.stop):
-          while self.read:                       
-             self.data     =self.serPort.readline()
-             #if it only reads '\r\n' or less, there is no data
-             if len(self.data)>2:
-                self.dataCount+=1
-        #if stop the process, close the port before leaving        
-        self.serPort.close()
-        return     
-      
-      
 #######################################################################      
 portname        = '/dev/ttyACM0' #remember to check the name of your port
 portrate        = 9600
 num_samples     = 1000            
-arduinoData     = comObje(portname,portrate)
+arduinoData     = comObj(portname,portrate)
 
 ################
-X=np.array([]);        #empty array
-arduinoData.start()    #start the thread for reading data
-arduinoData.read=True  #flag to read data from usb port as True
-hf = open('data.txt','w')
-item=0;
-for t in np.arange(num_samples):
-     #stop and wait until data count increases     
-     while item==arduinoData.dataCount:
-         pass
-     item =arduinoData.dataCount
-     #conver data to float
-     value=float(arduinoData.data[:-2]) #discard '\r\n'     
-     line=str(item)+'\t'+str(value)+'\n'
-     hf.write(line)
-     X=np.append(X,value)
-     
-hf.close()
-arduinoData.read=False #stop reading
-arduinoData.stop=True  #stop the process   
-plt.plot(X)
-plt.show()
+'''
+figObj = DynamicPlot(ran_y=[-1,1]) #create figure to plot data
+dispObj= GetDisplay(arduinoData,figObj)#create object to update plot with arduino data
+arduinoData.start()    #start the thread for reading data from arduino
+dispObj.start()        #start the thread to update plot with data
+arduinoData.read=True  #set flag to read data from usb port as True
+'''
 
 #######################################################################
 #arduino code
@@ -85,5 +48,18 @@ void loop() {
   delay(100);  
 }
 '''
+#### test code with serial reader
+readObj= reader('data.txt')
+figObj = DynamicPlot(ran_y=[-1,1])
+dispObj= GetDisplay(readObj,figObj)
+
+readObj.start()
+dispObj.start()
+readObj.read=True
+
+#dispObj.stop=True
+   
+
+
 
 
