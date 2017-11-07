@@ -27,19 +27,22 @@ arduinoData.read=True  #set flag to read data from usb port as True
 #######################################################################
 #arduino code
 '''
-float angle = 0;
-double value = 0;
+float t  = 0;  //valor de la variable independiente
+double value = 0;  //resultado que se va a transmitir al pc
+int t_sample = 10; //tiempo de muestreo, en ms. Separacion entre muestras, cada cuanto tiempo
+                   //se transmite una nueva muestra al pc
+const float pi=3.141592;
 
 void setup() {
    Serial.begin(9600);
 }
 
 void loop() { 
-  
-  value=sin(angle);
-  Serial.println(value,5);
-  angle+=0.0314;
-  delay(100);  
+  //sumar tres componentes frecuenciales
+  value=sin(2*pi*1*t)+0.7*sin(2*pi*2*t)+0.3*sin(2*pi*4*t);
+  Serial.println(value,4);
+  t=t+float(t_sample)/1000;
+  delay(t_sample);  
 }
 '''
 #### test code with serial reader
