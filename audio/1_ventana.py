@@ -4,7 +4,7 @@ from fourierFunc import fourierAn
 from scipy.signal import get_window
 
 
-M = 128   #tamaño de la ventana (usar solo numeros pares)
+M = 128   #tamaño de la ventana (usar solo numeros pares para este ejercicio)
 N = 256  #numero de puntos de la FFT
 hN = int(N/2) #punto medio de la fft
 hM = int(M/2) #punto medio de la ventana

@@ -5,6 +5,8 @@ import serial
 import threading
 import time
 import numpy as np
+#import matplotlib
+#matplotlib.use('agg')
 import matplotlib.pyplot as plt
 plt.ion()
 
@@ -22,19 +24,26 @@ class comObj(threading.Thread):
          self.portRate  = portRate        
          self.num_data  = np.array([])
       def run(self):   
-        #create the port instance
-        self.serPort = serial.Serial(self.portName, self.portRate) 
-        while not(self.stop):
+         #create the port instance
+         self.serPort = serial.Serial(self.portName, self.portRate) 
+         while not(self.stop):
           while self.read:                       
              self.raw_data     =self.serPort.readline()
              #if it only reads '\r\n' or less, there is no data
-             if len(self.data)>2:
-                self.dataCount+=1
-                self.num_data=np.append(self.num_data,float(self.raw_data[:-2]))
-        #if stop the process, close the port before leaving        
-        self.serPort.close()
-        return     
-      
+             if len(self.raw_data)>2:
+                try:                   
+                   self.num_data=np.append(self.num_data,float(self.raw_data[:-2]))
+                   self.dataCount+=1
+                except:
+                   print('Error: no data')
+         #if stop the process, close the port before leaving        
+         self.serPort.close()
+         return     
+        
+      def kill(self):
+          self.read=False
+          self.stop=True
+          return
 ###################################
 #define a class to read from a file every X ms
 class reader(threading.Thread):
@@ -71,7 +80,7 @@ class DynamicPlot():
           self.max_y = ran_y[1]
         #Set up plot
         self.figure, self.ax = plt.subplots()
-        self.lines, = self.ax.plot([],[], 'o')
+        self.lines, = self.ax.plot([],[],'k')
         #Autoscale on unknown axis and known lims on the other
         self.ax.set_autoscaley_on(True)
         if not(self.min_x==None):
@@ -106,13 +115,28 @@ class GetDisplay(threading.Thread):
         self.stop    = False
         self.save    = True
         self.fileName= 'newfile.txt'
+        self.buffersize=256
     def run(self):
-        timer = time.time()
+        y_buffer  = np.zeros(self.buffersize)
+        x_buffer  = np.zeros(self.buffersize)
+        p_in = 0
+        p_fin= 0
+        timer= time.time()
         while not(self.stop):
             y_data=self.comObj.num_data
             x_data=np.arange(y_data.size)            
+            if not(p_fin==self.comObj.dataCount):
+               p_fin=self.comObj.dataCount
+               if p_fin>255:
+                   p_in=y_data.size-256
+                   y_buffer = y_data[p_in:]
+                   x_buffer = x_data[p_in:]            
+               else:
+                   y_buffer = y_data[p_in:]
+                   x_buffer = x_data[p_in:]
+                   
             if (time.time()-timer)>self.update:
-                self.DyPlot.on_running(x_data,y_data)
+                self.DyPlot.on_running(x_buffer,y_buffer)
                 timer=time.time()
         #if save, then save all data to a txt file
         if self.save:        
@@ -121,5 +145,9 @@ class GetDisplay(threading.Thread):
             np.savetxt(self.fileName, X, fmt='%5.5f', delimiter='\t', newline='\n', header='', footer='', comments='# ')
         return    
     
+    def kill(self):
+        self.comObj.kill()
+        self.stop=True
+        return
 
 
