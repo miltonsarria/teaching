@@ -1,11 +1,5 @@
 #Milton Orlando Sarria
 #USC - Cali
-#how to comunicate python with Arduino via serial port 
-#first install pySerial 
-
-#pip install pyserial
-
-#source code can be found in https://github.com/pyserial/pyserial
 
 from tools import reader, DynamicPlot, GetDisplay, comObj
 
@@ -23,6 +17,8 @@ arduinoData.start()    #start the thread for reading data from arduino
 dispObj.start()        #start the thread to update plot with data
 arduinoData.read=True  #set flag to read data from usb port as True
 
+#to finish you have to execute the command
+#dispObj.kill()
 
 #######################################################################
 #arduino code
@@ -54,8 +50,8 @@ dispObj= GetDisplay(readObj,figObj)
 readObj.start()
 dispObj.start()
 readObj.read=True
- 
-'''
+''' 
+
 
 
 

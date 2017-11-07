@@ -54,6 +54,7 @@ class reader(threading.Thread):
          self.tRead     = tRead/1e3
          self.read      = False
          self.num_data  = np.array([])
+         self.dataCount = 0
       def run(self):
       
          for line in self.fh:
@@ -61,9 +62,15 @@ class reader(threading.Thread):
                pass
             self.rawdata=line
             self.num_data=np.append(self.num_data,float(self.rawdata[:-1].split('\t')[1]))
+            self.dataCount+=1
             time.sleep(self.tRead)
          self.fh.close()
          return
+      
+      def kill(self):
+          self.read=False
+          return
+          
 ###################################   
 class DynamicPlot():
     def __init__(self,ran_x=[],ran_y=[]):
@@ -127,8 +134,8 @@ class GetDisplay(threading.Thread):
             x_data=np.arange(y_data.size)            
             if not(p_fin==self.comObj.dataCount):
                p_fin=self.comObj.dataCount
-               if p_fin>255:
-                   p_in=y_data.size-256
+               if y_data.size>self.buffersize:
+                   p_in=y_data.size-self.buffersize
                    y_buffer = y_data[p_in:]
                    x_buffer = x_data[p_in:]            
                else:
