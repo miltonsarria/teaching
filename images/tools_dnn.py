@@ -1,3 +1,5 @@
+#milton Orlando Sarria
+
 import numpy as np
 import os
 import sys
@@ -5,6 +7,7 @@ import tarfile
 from scipy import ndimage
 from six.moves import cPickle as pickle
 
+#algunas herramientas para cargar y manipular la base de datos notMNIST
 ####################################################################
 def maybe_extract(filename,expected_bytes, num_classes,force=False):
   
