@@ -46,10 +46,10 @@ class dataObj(threading.Thread):
 class callTimer(threading.Thread):
       def __init__(self,obj,data,timer):
         threading.Thread.__init__(self)          
-        self.stop       = False
-        self.obj = obj
+        self.stop = False
+        self.obj  = obj
         self.data = data
-        self.Ts         = timer
+        self.Ts   = timer
       def run(self):
         timer= time.time()
         while not(self.stop):
@@ -96,7 +96,7 @@ class App(QMainWindow):
     def closeEvent(self, event):
         
         reply = QMessageBox.question(self, 'Message',
-            "Are you sure to quit?", QMessageBox.Yes | 
+            "Seguro que quiere salir?", QMessageBox.Yes | 
             QMessageBox.No, QMessageBox.No)
 
         if reply == QMessageBox.Yes:
@@ -132,7 +132,7 @@ class PlotCanvas(FigureCanvas):
         
         self.ax.clear()
         self.ax.plot(self.data, 'r-')
-        self.ax.set_title('Example')
+        self.ax.set_title('Ejemplo')
         self.draw()
      
               

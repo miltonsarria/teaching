@@ -8,7 +8,7 @@ import numpy as np
 #import matplotlib
 #matplotlib.use('agg')
 import matplotlib.pyplot as plt
-plt.ion()
+
 
 
 #######################################################################
@@ -23,6 +23,8 @@ class comObj(threading.Thread):
          self.portName  = portName 
          self.portRate  = portRate        
          self.num_data  = np.array([])
+         self.tRead     = 10/1e3
+         
       def run(self):   
          #create the port instance
          self.serPort = serial.Serial(self.portName, self.portRate) 
@@ -44,32 +46,46 @@ class comObj(threading.Thread):
           self.read=False
           self.stop=True
           return
+      def save(self,name_file):
+          x_data=np.arange(self.num_data.size)
+          X=np.vstack((x_data,self.num_data))
+          X=X.transpose()
+          np.savetxt(name_file, X, fmt='%5.5f', delimiter='\t', newline='\n', header='', footer='', comments='# ')
+          return    
+        
 ###################################
 #define a class to read from a file every X ms
 class reader(threading.Thread):
       def __init__(self,datafile,tRead=100):
          threading.Thread.__init__(self) 
-         self.fh=open(datafile,'r')
+         self.datafile  = datafile
          self.rawdata   = '0\t0\n'
          self.tRead     = tRead/1e3
          self.read      = False
+         self.stop      = False
          self.num_data  = np.array([])
          self.dataCount = 0
       def run(self):
-      
-         for line in self.fh:
+         #read all lines and close file
+         fh=open(self.datafile,'r')
+         lines  = fh.readlines()
+         fh.close()
+         for line in lines:
             while not(self.read):
                pass
             self.rawdata=line
             self.num_data=np.append(self.num_data,float(self.rawdata[:-1].split('\t')[1]))
             self.dataCount+=1
-            time.sleep(self.tRead)
-         self.fh.close()
+            time.sleep(self.tRead)         
+            if self.stop:
+               break
          return
       
       def kill(self):
           self.read=False
           return
+
+      
           
 ###################################   
 class DynamicPlot():
@@ -86,6 +102,7 @@ class DynamicPlot():
           self.min_y = ran_y[0]
           self.max_y = ran_y[1]
         #Set up plot
+        plt.ion()
         self.figure, self.ax = plt.subplots()
         self.lines, = self.ax.plot([],[],'k')
         #Autoscale on unknown axis and known lims on the other
@@ -120,7 +137,7 @@ class GetDisplay(threading.Thread):
         self.DyPlot  = DynPlotObj
         self.update  = update
         self.stop    = False
-        self.save    = True
+        self.save    = False
         self.fileName= 'newfile.txt'
         self.buffersize=256
     def run(self):

@@ -1,6 +1,6 @@
 #Milton Orlando Sarria
 #USC - Cali
-#some tools to test and do graphs.....
+#s
 
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -55,7 +55,7 @@ def update(i):
 
 
 ani = FuncAnimation(fig, update, interval=100)
-#                    init_func=init, blit=True)
+
 plt.show()
 
 obj.stop=True

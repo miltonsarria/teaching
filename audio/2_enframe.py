@@ -19,6 +19,7 @@ long_ventana =  0.025 #en segundos
 incremento   =  0.01#en segundos
 #en muestras
 M = int(fs * long_ventana)
+
 H = int(fs * incremento)
 #tipo de ventana, window puede ser rectangular, hanning, hamming, blackman, blackmanharris
 window = 'blackman'

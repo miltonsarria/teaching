@@ -2,31 +2,33 @@
 #USC - Cali
 
 from tools import reader, DynamicPlot, GetDisplay, comObj
-
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import numpy as np
 
 #######################################################################      
-portname        = '/dev/ttyACM0' #remember to check the name of your port
-portrate        = 9600
+portname        = '/dev/ttyACM0' #verficar el nombre de su puerto
+portrate        = 9600           #velocidad baudrate
+'''
+#esta parte del codigo solo corre usando IPython
 arduinoData     = comObj(portname,portrate)
-
-################
-
 figObj = DynamicPlot(ran_y=[-1,1]) #create figure to plot data
 dispObj= GetDisplay(arduinoData,figObj,update=0.2)#create object to update plot with arduino data
-arduinoData.start()    #start the thread for reading data from arduino
-dispObj.start()        #start the thread to update plot with data
-arduinoData.read=True  #set flag to read data from usb port as True
-
-#to finish you have to execute the command
+arduinoData.start()    #iniciar el hilo que permite leer datos del arduino
+dispObj.start()        #iniciar el hilo que permite mostrar los datos
+arduinoData.read=True  #iniciar la lectura 
+'''
+#si esta en IPython, debe finalizar el objeto que muestra datos
 #dispObj.kill()
-#if you want to display the data you jsut collected
+#los datos quedan guardados en un archivo de texto 
 #data=np.loadtxt('newfile.txt')
 #plt.plot(data[:,0],data[:,1])
 #plt.show()
 #######################################################################
 
-#### test code with serial reader
+#### evaluar el codigo con un lector de texto
 '''
+#codigo solo corre en IPython
 readObj= reader('data.txt')
 figObj = DynamicPlot(ran_y=[-1,1])
 dispObj= GetDisplay(readObj,figObj)
@@ -36,6 +38,46 @@ dispObj.start()
 readObj.read=True
 
 '''
+#######################################################################
+#este codigo corre en consola o tambien en IPython
+
+#definir una funcion para actualizar la grafica
+def update(i):
+    buffersize = 256
+    y_b   = np.array([])
+    x_b   = np.array([])
+    if readObj.dataCount>0:    
+       y_data=readObj.num_data
+       x_data=np.linspace(0,readObj.dataCount*readObj.tRead,y_data.size)
+       if y_data.size<buffersize:
+          y_b=y_data
+          x_b=x_data
+       else:
+          y_b=y_data[y_data.size-buffersize:]
+          x_b=x_data[x_data.size-buffersize:]
+   
+    ax.clear()
+    ax.plot(x_b,y_b) 
+    
+#definir variables
+#readObj= reader('data.txt')
+#readObj.read=True
+
+#para usar arduino comentar las lineas anteriores y quitar el comentario de las siguientes
+readObj     = comObj(portname,portrate)
+readObj.read=True  #iniciar la lectura 
+  
+fig = plt.figure()
+ax  = fig.add_subplot(1,1,1)
+ax.set_autoscaley_on(True)
+ax.set_ylim(-1, 1)
+
+readObj.start() #iniciar hilo para lectura de datos
+ani = FuncAnimation(fig, update, interval=500)#, blit=True)
+plt.show()
+
+readObj.stop=True
+
 #######################################################################
 #######################################################################
 #######################################################################

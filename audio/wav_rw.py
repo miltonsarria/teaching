@@ -21,8 +21,10 @@ def wavread(filename):
     fs, x = read(filename)
 
     if (len(x.shape) !=1):                                   # raise error if more than one channel
-        raise ValueError("Audio file should be mono")
-
+        print('audio en estereo: tomar solo el canal 1')
+        #raise ValueError("Audio file should be mono")
+        x=x[:,0]
+        print(x.shape)
     #if (fs !=44100):                                         # raise error if fs is dfferent to 41kHz
     #    raise ValueError("Sampling rate of input sound should be 44100")
 

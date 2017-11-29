@@ -1,7 +1,7 @@
 #Milton Orlando Sarria Paja
 #USC 2017
-#solucion parcial
-
+#solucion parcial 1
+ 
 import numpy as np
 import math
 
