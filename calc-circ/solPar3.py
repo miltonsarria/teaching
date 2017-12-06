@@ -71,17 +71,18 @@ for ii in np.arange(x.shape[0]):
     print('#########################################')
     print('Solucion para', [da, db], ids)
 
-    print('1)---------------')    
-    print('VAB', np.abs(VAB),np.angle(VAB, deg=True))
+    print('1)---------------')   
+    print('Z:     ', np.abs(Z),np.angle(Z, deg=True)) 
+    print('VAB:   ', np.abs(VAB),np.angle(VAB, deg=True))
     print('IAB: C ',IAB,' P:' ,np.abs(IAB),np.angle(IAB, deg=True))
     print('IBC: C ',IBC,' P:' ,np.abs(IBC),np.angle(IBC, deg=True))
     print('ICA: C ',ICA,' P:' ,np.abs(ICA),np.angle(ICA, deg=True))
 
-    print('Ia: C',Ia,' P:' ,np.abs(Ia),np.angle(Ia, deg=True))
-    print('Ib: C',Ib,' P:' ,np.abs(Ib),np.angle(Ib, deg=True))
-    print('Ic: C',Ic,' P:' ,np.abs(Ic),np.angle(Ic, deg=True))
+    print('Ia: C  ',Ia,'  P:' ,np.abs(Ia),np.angle(Ia, deg=True))
+    print('Ib: C  ',Ib,'  P:' ,np.abs(Ib),np.angle(Ib, deg=True))
+    print('Ic: C  ',Ic,'  P:' ,np.abs(Ic),np.angle(Ic, deg=True))
     
-    print('P=', S.real, '  S=', np.abs(S),'   fp=', S.real/np.abs(S))
+    print('P=', S.real, ' S=', np.abs(S),'   fp=', S.real/np.abs(S))
     
     #2)     
     Vrms=10*db/r2*unitC(-10)
