@@ -3,12 +3,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPClassifier
 
+
 #example using mnist
 
 
 #load data
 DATA_PATH='/home/sarria/data/mnist/'
 mn = mnist.MNIST(DATA_PATH)
+#en caso de tener nombres diferentes para los archivos, modificar las siguientes propiedades antes de cargar
+#
+# mn.test_img_fname = 't10k-images-idx3-ubyte'
+# mn.test_lbl_fname = 't10k-labels-idx1-ubyte'
+
+# mn.train_img_fname = 'train-images-idx3-ubyte'
+# mn.train_lbl_fname = 'train-labels-idx1-ubyte'
+
 test_img, test_label = mn.load_testing()
 train_img, train_label = mn.load_training()
 #comvert to numpy array

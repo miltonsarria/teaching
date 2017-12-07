@@ -1,5 +1,6 @@
 #Milton Orlando Sarria
-
+#USC
+#preparar datos 
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -15,6 +16,7 @@ from tools_dnn import *
 num_classes = 10
 
 #archivos .tar que contienen todos los datos
+                 
 train_filename='/home/sarria/data/notMNIST_large.tar.gz'
 test_filename='/home/sarria/data/notMNIST_small.tar.gz'
 
@@ -47,8 +49,8 @@ te_fh=open(test_files,'w')
 IM=np.zeros(image_size*10+1)
 nbr_samples=[]
 
-
-for root1,root2 in zip(train_datasets,test_datasets):
+#ejemplos para visualizar
+for root1,root2 in zip(train_datasets,test_datasets): 
     tr_fh.write(root1+'\n')
     te_fh.write(root2+'\n')  
 
@@ -61,9 +63,11 @@ for root1,root2 in zip(train_datasets,test_datasets):
     for ii in np.arange(10):
          xx_root=np.hstack((xx_root,xx[indx[ii],:,:]))
     IM=np.vstack((IM,xx_root))
-    
+print('Saving....:', train_files)
+print('Saving....:', test_files)        
 tr_fh.close()
 te_fh.close()
+
 
 plt.imshow(IM,cmap="gray")
 plt.show()
