@@ -49,7 +49,7 @@ te_fh=open(test_files,'w')
 IM=np.zeros(image_size*10+1)
 nbr_samples=[]
 
-#ejemplos para visualizar
+#seleccionar algunos ejemplos para visualizar
 for root1,root2 in zip(train_datasets,test_datasets): 
     tr_fh.write(root1+'\n')
     te_fh.write(root2+'\n')  

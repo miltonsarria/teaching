@@ -87,21 +87,23 @@ for mm in models:
     im_tr = idx_tr[train_labels == mm]    
     im_va = idx_va[valid_labels == mm]    
     im_te = idx_te[test_labels == mm]
-    
+    Xv  = valid_dataset[im_va,:,:]
+    Xv  = np.reshape(Xv,(im_va.size,28*28))
+    Xt = test_dataset[im_te,:,:]
+    Xt = np.reshape(Xt,(im_te.size,28*28))
+            
     for lb_tr in im_tr:
         x1 = train_dataset[lb_tr,:,:]
-        X  = valid_dataset[im_va,:,:]
-        X = np.reshape(X,(im_va.size,28*28))
-        diff  = ((X - x1.ravel())**2).sum(axis=1)
+        
+        diff  = ((Xv - x1.ravel())**2).sum(axis=1)
         diff = diff == 0
         
         if diff.sum() > 0: 
             c_tr[lb_tr] = c_tr[lb_tr]+1;
             c_va[im_va[diff]] = c_va[im_va[diff]]+1;
             
-        X = test_dataset[im_te,:,:]
-        X = np.reshape(X,(im_te.size,28*28))
-        diff  = ((X - x1.ravel())**2).sum(axis=1)
+        
+        diff  = ((Xt - x1.ravel())**2).sum(axis=1)
         diff = diff == 0
         if diff.sum() > 0: 
             c_tr[lb_tr] = c_tr[lb_tr]+1;
@@ -109,4 +111,31 @@ for mm in models:
 
 
 print([[(c_tr!=0).sum(), (c_va!=0).sum(), (c_te!=0).sum()],[c_tr.size, c_va.size, c_te.size]])
+
+
+#guardar una version depurada de la base de datos, sin datos repetidos los conjuntos de entrenamiento validacion y prueba
+p_pickle_file = root_path+'notMNIST_depurada.pickle'
+p_train_dataset = train_dataset[c_tr==0]; p_train_labels = train_labels[c_tr==0];
+p_valid_dataset = valid_dataset[c_va==0]; p_valid_labels = valid_labels[c_va==0];
+p_test_dataset = test_dataset[c_te==0];   p_test_labels  = test_labels[c_te==0];
+try:
+  f = open(p_pickle_file, 'wb')
+  data = {
+    'train_dataset': p_train_dataset,
+    'train_labels': p_train_labels,
+    'valid_dataset': p_valid_dataset,
+    'valid_labels': p_valid_labels,
+    'test_dataset': p_test_dataset,
+    'test_labels': p_test_labels,
+    }
+  pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
+  f.close()
+except Exception as e:
+  print('No se puede guardar el archivo: ', p_pickle_file, ':', e)
+  raise
+  
+  
+  
+
+
 
