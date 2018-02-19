@@ -7,8 +7,8 @@ from fourierFunc import fourierAn
 import wav_rw as wp
 
 
-filename1='/home/sarria/Documents/2017B/dsp-python/audio/audio/speaker2/audio1.wav'
-filename2='/home/sarria/Documents/2017B/dsp-python/audio/audio/speaker2/audio1_noise.wav'
+filename1='audio/speaker2/audio1.wav'
+filename2='audio/speaker2/audio1_noise.wav'
 
 #leer los archivos de audio
 fs,x1=wp.wavread(filename1)

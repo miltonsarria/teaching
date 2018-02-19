@@ -1,48 +1,33 @@
 import serial
 
 
-
-
 portName        = '/dev/ttyACM0' #verficar el nombre de su puerto
 portRate        = 9600           #velocidad baudrate
 
 sr=serial.Serial(portName, portRate) 
 
 while True:
-  sr.write(b'A')
+  
   data=sr.readline()
   print(data)
   
   
 '''
-int led = 13;
+float t  = 0;  //valor de la variable independiente
+double value = 0;  //resultado que se va a transmitir al pc
+int t_sample = 500; //tiempo de retardo, en ms. Separacion entre muestras
+const float pi=3.141592;
 
 void setup() {
    Serial.begin(9600);
-   pinMode(led, OUTPUT);    
 }
 
 void loop() { 
-  //sumar tres componentes frecuenciales
-  int entrada;
-  if(Serial.available()>0)
-  {  
-    entrada=Serial.read();   
-       
-    if (entrada==69)
-    {
-     digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-     delay(1000); 
-    }
-   
-   if (entrada==65)
-   {
-     digitalWrite(led, LOW);   // turn the LED on (HIGH is the voltage level)
-     delay(1000); 
-   }
-   
-   Serial.println(entrada);
-
-  }
+  //Calcular un valor usando una funcion matematica y transmitirlo al pc
+  value=sin(2*pi*0.1*t);
+  Serial.println(value,4);
+  t=t+float(t_sample)/1000;
+  delay(t_sample);  
+}
 }
 '''

@@ -35,3 +35,21 @@ to generate the pickle files which will contain training and testing data you ha
 $python 2_extract_notMNIST.py
 
 
+
+If you want to work with text, it is useful to install nltk for python
+$pip install nltk
+
+
+then python
+>>>import nltk
+>>>nltk.download()
+and download all
+
+
+
+
+
+
+
+
+

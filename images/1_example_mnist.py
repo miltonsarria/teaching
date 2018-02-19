@@ -18,8 +18,9 @@ mn = mnist.MNIST(DATA_PATH)
 # mn.train_img_fname = 'train-images-idx3-ubyte'
 # mn.train_lbl_fname = 'train-labels-idx1-ubyte'
 
-test_img, test_label = mn.load_testing()
 train_img, train_label = mn.load_training()
+test_img, test_label = mn.load_testing()
+
 #comvert to numpy array
 train_img     = np.array(train_img)
 test_img      = np.array(test_img)
@@ -33,12 +34,12 @@ X_train_labels=np.hstack((np.zeros(sum(train_label==3)),np.ones(sum(train_label=
 X_test_data  =np.vstack((test_img[test_label==3,:],test_img[test_label==8,:]))
 X_test_labels=np.hstack((np.zeros(sum(test_label==3)),np.ones(sum(test_label==8))))
 
-#randomize train data
+#redistribuir los datos
 new_order=np.random.permutation(X_train_labels.size)
 X_train_data   = X_train_data[new_order,:]
 X_train_labels = X_train_labels[new_order]
 
-#display first 100 images in a 10 x 10 image array
+#mostrar 100 ejemplos del nuevo conjunto de entrenamiento
 IM=np.zeros(28*10+1)
 im=0
 for i in np.arange(10):
@@ -65,4 +66,29 @@ mlp.fit(X_train_data/255, X_train_labels)
 
 print("Training set score: %f" % mlp.score(X_train_data/255, X_train_labels))
 print("Test set score: %f" % mlp.score(X_test_data/255, X_test_labels))
+
+
+### usando todas las clases
+X_train   = train_img
+y_train   = train_label
+
+X_test    = test_img
+y_test    = test_label
+
+
+mlp.fit(X_train/255, y_train)
+print("Training set score: %f" % mlp.score(X_train/255, y_train))
+print("Test set score: %f" % mlp.score(X_test/255, y_test))
+
+fig, axes = plt.subplots(4, 4)
+# use global min / max to ensure all weights are shown on the same scale
+vmin, vmax = mlp.coefs_[0].min(), mlp.coefs_[0].max()
+for coef, ax in zip(mlp.coefs_[0].T, axes.ravel()):
+    ax.matshow(coef.reshape(28, 28), cmap=plt.cm.gray, vmin=.5 * vmin,
+               vmax=.5 * vmax)
+    ax.set_xticks(())
+    ax.set_yticks(())
+
+plt.show()
+
 
