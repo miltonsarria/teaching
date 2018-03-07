@@ -1,8 +1,7 @@
 import serial
 
-
 portName        = '/dev/ttyACM0' #verficar el nombre de su puerto
-portRate        = 9600           #velocidad baudrate
+portRate        = 9600           #velocidad (baudrate)
 
 sr=serial.Serial(portName, portRate) 
 
@@ -10,7 +9,10 @@ while True:
   
   data=sr.readline()
   print(data)
-  
+#observar que lo que se imprime contiene informacion adicional, ademas del dato que nos interesa.   
+
+#el siguiente codigo se puede copiar y pegar en el IDE de arduino para luego transmitirlo al chip
+
   
 '''
 float t  = 0;  //valor de la variable independiente
@@ -28,6 +30,5 @@ void loop() {
   Serial.println(value,4);
   t=t+float(t_sample)/1000;
   delay(t_sample);  
-}
 }
 '''
