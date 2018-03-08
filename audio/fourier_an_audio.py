@@ -14,7 +14,7 @@ filename2='sound/violin-B3.wav'
 fs,x1=wp.wavread(filename1)
 fs,x2=wp.wavread(filename2)
 
-t=(np.arange(1,x1.size+1))/float(fs)
+t=(np.arange(1,5*fs))/float(fs)
 
 #calcular el espectro de las ondas 
 absY1,mY1,pY1=fourierAn(x1)
@@ -49,7 +49,36 @@ plt.plot(pY2)
 plt.title('fase onda 2')
 
 
-#48355
-#48073
+#indx1=np.array([48355  49307  50260])
+#indx1=np.array([48073  48606  49138]
+
+f1=np.array([443.7, 886.63, 1329.94])
+f2=np.array([312.6, 560.54, 808.01] )
+A2=np.array([0.02638, 0.13159, 0.03147])
+A1=np.array([0.0270,0.02018,0.00362])
+
+y1=np.zeros(t.size)
+y2=np.zeros(t.size)
+for i in range(3):
+    
+    fii=A1[i]*np.cos(2*np.pi*f1[i]*t)
+    y1=y1+fii  
+       
+    fii=A2[i]*np.cos(2*np.pi*f2[i]*t)
+    y2=y2+fii     
+
+
+plt.figure(2)
+
+plt.subplot(211)
+plt.plot(y1)
+plt.title('onda 1')
+
+plt.subplot(212)
+plt.plot(y2)
+plt.title('onda 2')
+
+
+
 plt.show()
 
