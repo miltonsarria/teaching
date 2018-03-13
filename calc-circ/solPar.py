@@ -12,26 +12,20 @@ def text2numbers(lines):
     for line in lines:
       #leer el dato de cada linea e ignorar el cambio de linea
       data = line[:-1]
-      #convertir (x[-1:],x[-2:-1]) a flotantes y apilar en la lista x
+      #separar los dos ultimos
       x.append([float(data[-1:]), float(data[-2:-1])])
       numID.append(data)
     #convertir la lista a un arreglo numpy
     x=np.array(x)
     return (x,numID)
     
-file_name='data.txt'
+file_name='data_2018.txt'
 hf = open(file_name,'r')
 lines=hf.readlines()
 hf.close()
 #convertir los datos a valores numericos
 x,numID=text2numbers(lines)
-#definir parametros del circuito
-f  = 60         #frecuencia en Hz
-L  = 10e-3      #valor del inductor
-w  = 2*np.pi*f  #frecuencia angular en rad/seg
-z1 = 2          #resistencia 1
-z2 = 1          #resistencia 2
-z3 = 1j*w*L     #impedancia debida al inductor
+
 #     
 #     _____________________________________
 #    |--> I1  |____|    | --> I2  |____|   |
@@ -47,8 +41,8 @@ for ii in np.arange(x.shape[0]):
     d=x[ii]
     ids=numID[ii]
 
-    da=d[0]
-    db=d[1]*1e-3
+    A=d[0]
+    B=d[1]*1e-3
     #casos especiales    #########################
     if (ids=='1144072458')|(ids=='1085899072')|(ids=='1118305239'):
        da=d[1]
