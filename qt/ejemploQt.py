@@ -13,12 +13,12 @@ class datos(object):
 #objeto=datos()
 ##################################################################
 class ventana1(QtGui.QWidget):    
-    def __init__(self,objeto,v2):
+    def __init__(self,objeto):
         super(ventana1, self).__init__()
         
         self.initUI()
         self.objeto=objeto
-        self.ventana2=v2
+
         
     def initUI(self):      
 
@@ -76,8 +76,9 @@ class ventana1(QtGui.QWidget):
          self.objeto.edad = self.text3.text()
          self.objeto.cargo = self.text4.text()
          #self.ventana2.objeto=self.objeto
+         
          self.close()
-         self.ventana2.show()  
+         self.secundario.show()  
 ###########################################################################################    
 class ventana2(QtGui.QWidget):    
     def __init__(self,objeto):
@@ -128,11 +129,14 @@ class ventana2(QtGui.QWidget):
 ###########################################################################################    
         
 def main():    
-    objeto=datos()
+    data=datos()
     app = QtGui.QApplication(sys.argv)
 
-    v2 = ventana2(objeto)
-    v1 = ventana1(objeto,v2)
+    v1 = ventana1(data)
+    v2 = ventana2(data)
+    
+        
+    v1.secundario = v2    
     v2.principal = v1
     
     sys.exit(app.exec_())
