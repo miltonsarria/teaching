@@ -58,7 +58,8 @@ class ventana1(QtGui.QWidget):
         self.setGeometry(300, 300, 400, 250)
         self.setWindowTitle('Recibir datos')
         
-        self.show()
+        self.show() #mostrar lo construido
+        
     def borrarDatos(self):
          self.text1.setText('')
          self.text2.setText('')
@@ -75,6 +76,7 @@ class ventana1(QtGui.QWidget):
          self.objeto.edad = self.text3.text()
          self.objeto.cargo = self.text4.text()
          #self.ventana2.objeto=self.objeto
+         self.close()
          self.ventana2.show()  
 ###########################################################################################    
 class ventana2(QtGui.QWidget):    
@@ -104,7 +106,13 @@ class ventana2(QtGui.QWidget):
         
         self.setGeometry(400, 400, 400, 250)
         self.setWindowTitle('mostrar datos')
-        #self.show()
+        
+        self.btn = QtGui.QPushButton('<< Atras', self)
+                     #columna, fila
+        self.btn.move(200, 150)
+        self.btn.clicked.connect(self.mostrarv1)        
+        
+
         
     def mostrarDatos(self):
      
@@ -113,7 +121,9 @@ class ventana2(QtGui.QWidget):
         self.label3.setText('Edad: '+ str(self.objeto.edad))
         self.label4.setText('Cargo: '+ str(self.objeto.cargo))               
             
-        
+    def mostrarv1(self):
+         self.close()
+         self.principal.show()      
          
 ###########################################################################################    
         
@@ -123,7 +133,7 @@ def main():
 
     v2 = ventana2(objeto)
     v1 = ventana1(objeto,v2)
-    
+    v2.principal = v1
     
     sys.exit(app.exec_())
 
