@@ -17,15 +17,15 @@ class parProcess(threading.Thread):
      '''
      class to create a parallel process object
      '''
-      def __init__(self, counter,sleep):
+     def __init__(self, counter,sleep):
          threading.Thread.__init__(self)
          self.counter = counter
          self.sleep = sleep
-      def run(self):
+     def run(self):
          print("iniciar proceso...")         
          while self.counter > 0:
              time.sleep(self.sleep)
-             print 'contador ', self.name, self.counter
+             print('contador ', self.name, self.counter)
              self.counter=self.counter-1
              
 
