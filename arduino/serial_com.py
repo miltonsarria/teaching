@@ -27,7 +27,6 @@ arduinoData.read=True  #iniciar la lectura
 #######################################################################
 
 #### evaluar el codigo con un lector de texto
-'''
 #codigo solo corre en IPython
 readObj= reader('data.txt')
 figObj = DynamicPlot(ran_y=[-1,1])
@@ -37,7 +36,7 @@ readObj.start()
 dispObj.start()
 readObj.read=True
 
-'''
+
 #######################################################################
 #este codigo corre en consola o tambien en IPython
 
@@ -60,12 +59,12 @@ def update(i):
     ax.plot(x_b,y_b) 
     
 #definir variables
-#readObj= reader('data.txt')
-#readObj.read=True
+readObj= reader('data.txt')
+readObj.read=True
 
 #para usar arduino comentar las lineas anteriores y quitar el comentario de las siguientes
-readObj     = comObj(portname,portrate)
-readObj.read=True  #iniciar la lectura 
+#readObj     = comObj(portname,portrate)
+#readObj.read=True  #iniciar la lectura 
   
 fig = plt.figure()
 ax  = fig.add_subplot(1,1,1)
