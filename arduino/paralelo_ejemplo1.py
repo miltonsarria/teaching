@@ -8,21 +8,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import numpy as np
 
-#######################################################################
-#### evaluar el codigo con un lector de texto
-#codigo solo corre en IPython
-readObj= reader('data.txt')
-figObj = DynamicPlot(ran_y=[-1,1])
-dispObj= GetDisplay(readObj,figObj)
 
-readObj.start()
-dispObj.start()
-readObj.read=True
-
-
-#######################################################################
 #este codigo corre en consola o tambien en IPython
-
 #definir una funcion para actualizar la grafica
 def update(i):
     buffersize = 256
@@ -41,19 +28,20 @@ def update(i):
     ax.clear()
     ax.plot(x_b,y_b) 
     
+#######################################################################
+#### evaluar el codigo con un lector de texto
+#######################################################################    
 #definir variables
 readObj= reader('data.txt')
 readObj.read=True
 
-#para usar arduino comentar las lineas anteriores y quitar el comentario de las siguientes
-#readObj     = comObj(portname,portrate)
-#readObj.read=True  #iniciar la lectura 
-  
+#iniciar la figura donde se van a vizualizar los datos
 fig = plt.figure()
 ax  = fig.add_subplot(1,1,1)
 ax.set_autoscaley_on(True)
 ax.set_ylim(-1, 1)
 
+#iniciar la lectura de datos (realmente los datos se actualizan cada x cantidad de tiempo)
 readObj.start() #iniciar hilo para lectura de datos
 ani = FuncAnimation(fig, update, interval=500)#, blit=True)
 plt.show()
