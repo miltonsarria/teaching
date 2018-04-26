@@ -9,10 +9,6 @@ except ImportError:
     from tkinter import *   ## notice lowercase 't' in tkinter here
     from tkinter import messagebox as tkMessageBox
 
-
-
-
-
 class parProcess(threading.Thread):
      '''
      class to create a parallel process object

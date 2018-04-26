@@ -1,11 +1,21 @@
 #from  tkinter import * 
 #to use different versions of python
+
+import numpy as np
+
 try:
     # for Python2
     from Tkinter import *   ## notice capitalized T in Tkinter 
 except ImportError:
     # for Python3
     from tkinter import *   ## notice lowercase 't' in tkinter here
+
+import matplotlib
+matplotlib.use('TkAgg')
+
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.pyplot as plt
+
 
 #############################################################################################
 class genInterfaz():
@@ -22,10 +32,10 @@ class genInterfaz():
      #funcion para inicialiciar la ventana principal
      def initMaster(self):
         self.master.title('Ejemplo - principal') 
-        self.master.geometry('300x400+0+0')
+        self.master.geometry('800x800+0+0')
         #generar boton de aceptar los datos ingresados
         self.boton = Button(self.master,text="Aceptar", command= self.guardarDatos )
-        self.boton.place(x=200, y=370)
+        self.boton.place(x=600, y=700)
         #generar label 1 yentrada 1 para indicar donde debe ingresar nombre
         self.label1 = Label(self.master, text="Nombre:").place(x=10,y=10)
         self.entry1 = Entry(self.master, bd =2)
@@ -41,6 +51,34 @@ class genInterfaz():
         self.entry3 = Entry(self.master, bd =2)
         #self.entry3.pack()
         self.entry3.place(x=75,y=70)
+        
+        self.fig = plt.figure(1)
+        plt.ion()
+        t = np.arange(0.0,3.0,0.01)
+        s = np.sin(np.pi*t)
+        plt.plot(t,s)
+        canvas = FigureCanvasTkAgg(self.fig, master=self.master)
+        plot_widget = canvas.get_tk_widget()
+
+        
+
+        plot_widget.grid(row=300, column=300)
+        self.botUpdate = Button(self.master,text="Update",command=self.update).grid(row=1, column=0)
+     
+
+
+     def update(self):
+            self.fig.clear() 
+            t = np.arange(0.0,3.0,0.01)
+            s = np.cos(np.pi*t)
+            plt.plot(t,s)
+            self.fig.canvas.draw()   
+     def on_exit(self):
+         self.second.destroy()
+         self.master.destroy()
+
+
+
      #############################################################################################        
      #funcion para inicialiciar la ventana secundaria
      def initSecond(self):
@@ -88,7 +126,10 @@ class genInterfaz():
      #############################################################################################        
      def volverPrincipal(self):                
         self.second.withdraw() 
-        self.master.deiconify()        
+        self.master.deiconify()
+     
+    
+       
 #############################################################################################                        
 
 def main():    
