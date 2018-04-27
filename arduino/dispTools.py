@@ -26,6 +26,7 @@ class reader(threading.Thread):
          for line in lines:
             while not(self.read):
                pass
+
             self.rawdata=line
             self.num_data=np.append(self.num_data,float(self.rawdata[:-1].split('\t')[1]))
             self.dataCount+=1

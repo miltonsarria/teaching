@@ -21,16 +21,20 @@ class silla():
       
 def main():
     silla1=silla()
-    silla1.funcion='HH'      
+    silla1.funcion_aux='volar'      
     
     silla2=silla()
     silla2.reclinable='no'
-    
+    silla2.color='negro'
+
     silla1.desplazar(4)
     silla2.desplazar(4)
     
-    print silla1.posicion    
-    print silla2.posicion
+    print(silla1.posicion)
+    print(silla2.posicion)
+    print(silla1.color)
+    print(silla2.color)
+    
 
 if __name__ == '__main__':
     main()

@@ -1,7 +1,7 @@
 #Milton Orlando Sarria
 #USC - Cali
 #este ejemplo permite ilustrar como dos procesos se pueden sincronizar en 
-#paralelo para ejecutar dos tareas diferentes pero que comparten información
+#paralelo para ejecutar dos tareas diferentes pero que comparten informacion
 
 from dispTools import reader, DynamicPlot, GetDisplay
 import matplotlib.pyplot as plt
