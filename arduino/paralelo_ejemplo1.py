@@ -12,7 +12,7 @@ import numpy as np
 #este codigo corre en consola o tambien en IPython
 #definir una funcion para actualizar la grafica
 def update(i):
-    buffersize = 256
+    buffersize = 500
     y_b   = np.array([])
     x_b   = np.array([])
     if readObj.dataCount>0:    
