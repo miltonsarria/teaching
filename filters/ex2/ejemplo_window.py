@@ -12,29 +12,45 @@ from scipy.signal import get_window
 ##########################################
 #BLOQUE 1
 #definir la frecuencia de muestreo
-Fs=20
-F1=2
-F2=5
+Fs=50
+tf=5 #tiempo final
+#definir la secuencia de tiempo hasta 5 segundos
+nT=np.linspace(1./Fs,tf,Fs*tf);
+
+
+#definir dos componentes frecuenciales en Hz y calcular su equivalente en rad/s
+F1=10
+F2=9
 
 #omega
 w1=2*np.pi*F1
 w2=2*np.pi*F2
 
-tf=50 #tiempo final
-#definir la secuencia de tiempo hasta 5 segundos
-nT=np.linspace(1./Fs,tf,Fs*tf);
 
-#generar secuencia discreta x[n]=x1[n]+x2[n]
-x=2*np.sin(w1*nT)+1*np.cos(w2*nT)
+#definir ventana
+window = 'parzen'
+
 #secuencias separadas
 x1=2*np.sin(w1*nT)
 x2=1*np.cos(w2*nT)
+#generar secuencia discreta x[n]=x1[n]+x2[n]
+x=2*np.sin(w1*nT)+1*np.cos(w2*nT)
 
-#generar ventana y normalizarla
-window = 'hanning'
-M=  nT.size
+
+N=512
+n=nT.size
+x=np.hstack((np.zeros(int((N-n)/2)),x,np.zeros(int((N-n)/2))))
+x1=np.hstack((np.zeros(int((N-n)/2)),x1,np.zeros(int((N-n)/2))))
+x2=np.hstack((np.zeros(int((N-n)/2)),x2,np.zeros(int((N-n)/2))))
+
+#generar ventana
+
+M =  n
 w = get_window(window, M)
+print(M)
 
+w=np.hstack((np.zeros(int((N-n)/2)),w,np.zeros(int((N-n)/2))))
+print(w.shape)
 xw=x*w
 xw1=x1*w
 xw2=x2*w
@@ -50,15 +66,15 @@ absXw2,Xdbw2,pXw2=fourierAn(xw2)
 
 
 plt.subplot(311)
-plt.plot(nT,x)
+plt.plot(x)
 plt.ylabel('x[n]')
 plt.xlabel('tiempo - s')
 
 plt.subplot(312)
-plt.plot(nT,x1)
+plt.plot(x1)
 
 plt.subplot(313)
-plt.plot(nT,x2)
+plt.plot(x2)
 
 plt.figure(2)
 plt.subplot(311)
