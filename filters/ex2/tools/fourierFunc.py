@@ -23,6 +23,6 @@ def fourierAn(y):
         #calcular la magnitud en dB
         absY[absY < np.finfo(float).eps] = np.finfo(float).eps    # Si hay ceros, reemplazar por un valor muy pequeno, antes de aplicar el log
         Ydb = 20 * np.log10(absY) 
-        #retornar la magnitud, la magnitud en decibeles y la fase
+        #retornar la magnitud |Y|, la magnitud en decibeles 20log10|Y| y la fase
         return absY,Ydb,pY
 
