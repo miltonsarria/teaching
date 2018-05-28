@@ -71,7 +71,7 @@ for ii in np.arange(x.shape[0]):
     print('Ic:',Ic, 'Fasorial: ', np.abs(Ic), np.angle(Ic, deg=True))
             
     print('S1:',S1, 'Fasorial: ', np.abs(S1), np.angle(S1, deg=True))
-    print('S2:',S2, 'Fasorial: ', np.abs(S1), np.angle(S2, deg=True))
+    print('S2:',S2, 'Fasorial: ', np.abs(S2), np.angle(S2, deg=True))
     print('S3:',S3, 'Fasorial: ', np.abs(S3), np.angle(S3, deg=True))
     
     print('St:',St, 'Fasorial: ', np.abs(St), np.angle(St, deg=True))
@@ -79,7 +79,7 @@ for ii in np.arange(x.shape[0]):
 
     
     ##################################################       
-    print('Punto 2:')
+    print('\n\nPunto 2:')
     Ra=3*B
     Zb=5*B-1j*B
     Rc=10*B
@@ -102,9 +102,12 @@ for ii in np.arange(x.shape[0]):
     
     print('Vo:',Vo, 'Fasorial: ', np.abs(Vo), np.angle(Vo, deg=True))
     print('I1:',I1, 'Fasorial: ', np.abs(I1), np.angle(I1,deg=True))    
+    print('I2:',I2, 'Fasorial: ', np.abs(I2), np.angle(I2,deg=True))  
+    print('It:',It, 'Fasorial: ', np.abs(It), np.angle(It,deg=True))  
+    print('\n')
     print('Vt:',Vt, 'Fasorial: ', np.abs(Vt), np.angle(Vt, deg=True))
     print('S1:',S1, 'Fasorial: ', np.abs(S1), np.angle(S1, deg=True))
-    print('S2:',S2, 'Fasorial: ', np.abs(S1), np.angle(S2, deg=True))
+    print('S2:',S2, 'Fasorial: ', np.abs(S2), np.angle(S2, deg=True))
     print('St:',St, 'Fasorial: ', np.abs(St), np.angle(St, deg=True))
     print('En la carga: ')
     print('Sl:',Sl, 'Fasorial: ', np.abs(Sl), np.angle(Sl, deg=True))
