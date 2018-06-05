@@ -88,8 +88,8 @@ class capture(threading.Thread):
         print "Video device or file couldn't be opened"
         exit()
       retval, img_rgb = self.cam.read()      
-      if len(img.shape)==3:   
-          self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+      if len(img_rgb.shape)==3:   
+          self.img_g   = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
       else:
           self.img_g = img_rgb
       #self.img_g=read_img()
@@ -312,7 +312,7 @@ class AppForm(QMainWindow):
         self.sp1.setValue(0)
         self.sp1.valueChanged.connect(self.valuechange)
 
-        self.l2 = QLabel("Max:")
+        self.l2  = QLabel("Max:")
         self.sp2 = QSpinBox()
         self.sp2.setMinimum(0)
         self.sp2.setMaximum(255)

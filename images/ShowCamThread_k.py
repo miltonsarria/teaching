@@ -70,9 +70,10 @@ class kinect_cam():
         else:
             return np.array([])
 ##########################################################
-class capture(threading.Thread):
+#class capture(threading.Thread):
+class capture():
     def __init__(self,source=0,tRead=70):
-      threading.Thread.__init__(self) 
+      #threading.Thread.__init__(self) 
       # Create the VideoCapture object and define default values
       #self.cam    = cv2.VideoCapture(source)
       self.cam    = kinect_cam()
@@ -83,7 +84,7 @@ class capture(threading.Thread):
       self.tRead  = tRead/1e3
       self.window = None
       self.filterSize = 5
-      self.ap_mask=True
+      self.ap_mask=False
       self.filter =True
       #if not self.cam.isOpened():
       #  print "Video device or file couldn't be opened"
@@ -103,32 +104,31 @@ class capture(threading.Thread):
         if self.ap_mask:
           self.img_g = self.mask - self.img_g
         self.img_g = self.img_g*self.m+self.b
-        self.img_g[self.img_g<0]=0
-        self.img_g[self.img_g>255]=255
+        #self.img_g[self.img_g<0]=0
+        #self.img_g[self.img_g>255]=255
         if self.filter:
           self.img_g = cv2.blur(self.img_g,(self.filterSize,self.filterSize))                
         return
         
     def run(self):
       #read from camera
-      while True:
-            while not(self.read):
-                 pass
+      #while True:
+            #while not(self.read):
+            #     pass
             self.img_g = self.cam.read()
             #if len(img.shape)==3:
             #    self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             #img=read_img()
             #
             #self.img_g.astype(float) 
-            self.process()           
-            
+            self.process()                       
             if not(self.window == None) :
                 self.window.on_draw(self.img_g)
-            time.sleep(self.tRead)           
+            #time.sleep(self.tRead)           
             ###########
-            if self.stop:
-               break
-      return 
+            #if self.stop:
+            #   break
+      #return 
     #function kill process  
     def kill(self):
        self.stop=True
@@ -202,12 +202,17 @@ class AppForm(QMainWindow):
             
         self.img_obj= capture()
         self.img0   = self.img_obj.img_g
-        self.img_obj.start() 
+        #self.img_obj.start() 
                
         self.create_main_frame()
-        self.secW = secWindow(self.main_frame)
-        self.secW.levels = 6
-        self.img_obj.window=self.secW
+        self.secW           = secWindow(self.main_frame)
+        self.secW.levels    = 6
+        self.img_obj.window = self.secW
+        self.timer          = QTimer()
+        self.timer.timeout.connect(self.img_obj.run)
+        self.timer.start(70)
+#        self.timerStart = True
+        
     #function update histogram using current image    
     def updateHist(self):        
         self.axes1.clear()
@@ -224,14 +229,14 @@ class AppForm(QMainWindow):
     def adjustImg(self):
         """ Update image
         """
-        self.img_obj.ap_mask=self.mask_cb.isChecked()
-        self.img_obj.filter=self.filter_cb.isChecked()                          
-        self.img_obj.m=self.m
-        self.img_obj.b=self.b
-        self.secW.levels= int(str(self.e1_levels.text()))    
-        self.img_obj.filterSize =int(str(self.e2_filter.text()))
+        self.img_obj.ap_mask    = self.mask_cb.isChecked()
+        self.img_obj.filter     = self.filter_cb.isChecked()                          
+        self.img_obj.m          = self.m
+        self.img_obj.b          = self.b
+        self.secW.levels        = int(str(self.e1_levels.text()))    
+        self.img_obj.filterSize = int(str(self.e2_filter.text()))
 
-        time.sleep(0.070)
+        #time.sleep(0.070)
         self.img0   = self.img_obj.img_g       
         self.updateHist()
         self.updateImg()
@@ -242,8 +247,8 @@ class AppForm(QMainWindow):
         """
         self.minV = self.sp1.value()
         self.maxV = self.sp2.value()
-        self.m=255./(self.maxV-self.minV)
-        self.b=-(self.m*self.minV)
+        self.m    = 255./(self.maxV-self.minV)
+        self.b    = -(self.m*self.minV)
         self.label_m.setText(str(self.m))
         self.label_b.setText(str(self.b))
         return
