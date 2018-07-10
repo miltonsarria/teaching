@@ -6,13 +6,11 @@ Kinect and camera use
 import sys, os, random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-import matplotlib
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
-from matplotlib.animation import FuncAnimation
 import threading
 import time
 ##
@@ -88,9 +86,8 @@ class capture(threading.Thread):
         print "Video device or file couldn't be opened"
         exit()
       retval, img = self.cam.read()
-      if len(img.shape)==3:   
-          self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-      #self.img_g=read_img()
+      self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+      self.img_rgb = img
       #
       self.mask = 255*np.ones(self.img_g.shape)     
       self.process()
@@ -112,8 +109,8 @@ class capture(threading.Thread):
             while not(self.read):
                  pass
             retval, img = self.cam.read()
-            if len(img.shape)==3:
-                self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            self.img_g   = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            self.img_rgb = img
             #img=read_img()
             #
             self.process()           
@@ -191,13 +188,13 @@ class AppForm(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
         self.setWindowTitle('Main: Modificar histograma')
-        self.minV   = 0.0
-        self.maxV   = 255.
-        self.m = 1.0
-        self.b = 0.0
+        self.minV       = 0.0
+        self.maxV       = 255.
+        self.m          = 1.0
+        self.b          = 0.0
             
-        self.img_obj= capture()
-        self.img0   = self.img_obj.img_g
+        self.img_obj    = capture()
+        self.img0       = self.img_obj.img_g
         self.img_obj.start() 
                
         self.create_main_frame()
