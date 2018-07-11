@@ -25,14 +25,21 @@ import freenect
 import imutils
 ##########################################################
 ##########################################################
-class kinect_cam():
+class kinect_cam(): self.img_g
     def __init__(self):
         self.isopen        = True
         self.rgb           = np.array([])
         self.depth         = np.array([])
         self.convert_rgb   = True
         self.convert_depth = True
-
+        self.window        = None
+        self.trh           = 128 
+        self.filterSize    = 5
+        self.ap_mask       = False
+        self.filter        = True
+        self.m             = 1.0
+        self.b             = 0.0
+        self.mask = np.array([])
     #function to get RGB image from kinect    
     def _get_video(self):
         self.rgb,_ = freenect.sync_get_video()
@@ -51,10 +58,11 @@ class kinect_cam():
     #function read depth camera    
     def read(self):
         if self.isopen:
-            self._get_depth() 
-            return self.depth
+            self._get_depth()
+            self.process()
         else:
-            return np.array([])
+            self.depth=np.array([])
+        return
     #function read rgb camera
     def read_rgb(self):
         if self.isopen:
@@ -62,43 +70,15 @@ class kinect_cam():
             return self.rgb
         else:
             return np.array([])
-##########################################################
-#class capture(threading.Thread):
-class capture():
-    def __init__(self,source=0,tRead=70):
-      #threading.Thread.__init__(self) 
-      # Create the VideoCapture object and define default values
-      #self.cam    = cv2.VideoCapture(source)
-      self.cam    = kinect_cam()
-      self.m      = 1.0
-      self.b      = 0.0
-      self.read   = True
-      self.stop   = False
-      self.tRead  = tRead/1e3
-      self.window = None
-      self.trh          = 128 
-      self.filterSize   = 5
-      self.ap_mask      = False
-      self.filter       = True
-      #if not self.cam.isOpened():
-      #  print "Video device or file couldn't be opened"
-      #  exit()
-      self.img_g = self.cam.read()
-      #if len(img_g.shape)==3:   
-      #    self.img_g   = cv2.cvtColor(img_g, cv2.COLOR_BGR2GRAY)
-      #self.img_g=read_img()
-      #
-      self.mask = 255*np.ones(self.img_g.shape)
-      #self.img_g.astype(float) 
-       
-      self.process()
-      return
-    #pre-process image
+#pre-process image
     def process(self):
+        if self.mask.shape==(0,):
+              self.mask = 255*np.ones(self.depth.shape)
         if self.ap_mask:
-          self.img_g = self.mask - self.img_g
-        self.img_g = self.img_g*self.m+self.b
+              self.depth = self.mask - self.depth
         
+        #self.depth_p = self.depth*self.m+self.b
+        self.img_g = cv2.cvtColor(self.depth, cv2.COLOR_BGR2GRAY);
         if self.filter:
           self.img_g = cv2.blur(self.img_g,(self.filterSize,self.filterSize))                
 
@@ -119,18 +99,10 @@ class capture():
 	        cv2.putText(self.img_wb, "center", (cX - 20, cY - 20),
 		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 		
-        return        
-    def run(self):       
-        self.img_g = self.cam.read()        
-        self.process()  
-        IMG=np.hstack((self.img_wb,self.img_g))            
+		IMG=np.hstack((self.img_wb,self.img_g))            
         if not(self.window == None) :
            self.window.on_draw(IMG)
         return 
-    #function kill process  
-    def kill(self):
-       self.stop=True
-       return
 ##########################################################
 ##########################################################    
 class secWindow(QMainWindow):
@@ -197,7 +169,7 @@ class AppForm(QMainWindow):
         self.maxV   = 255.
         self.m      = 1.0
         self.b      = 0.0
-        self.img_obj= capture()
+        self.img_obj= kinect_cam()
         self.img0   = self.img_obj.img_g
               
         self.create_main_frame()
@@ -208,7 +180,7 @@ class AppForm(QMainWindow):
         self.secW.levels    = 6
         self.img_obj.window = self.secW
         self.timer          = QTimer()
-        self.timer.timeout.connect(self.img_obj.run)
+        self.timer.timeout.connect(self.img_obj.read)
         self.timer.start(70)
 #        self.timerStart = True
         
