@@ -5,7 +5,6 @@ Kinect and camera use
 """
 import pygame
 from pygame.locals import *
- 
 import sys, os, random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -25,7 +24,7 @@ import freenect
 import imutils
 ##########################################################
 ##########################################################
-class kinect_cam(): self.img_g
+class kinect_cam(): 
     def __init__(self):
         self.isopen        = True
         self.rgb           = np.array([])
@@ -34,73 +33,67 @@ class kinect_cam(): self.img_g
         self.convert_depth = True
         self.window        = None
         self.trh           = 128 
-        self.filterSize    = 5
+        self.filterSize    = 10
         self.ap_mask       = False
         self.filter        = True
         self.m             = 1.0
         self.b             = 0.0
         self.mask = np.array([])
     #function to get RGB image from kinect    
-    def _get_video(self):
+    def get_video(self):
         self.rgb,_ = freenect.sync_get_video()
+        if self.rgb is None:
+           self.rgb = np.array([])
         if self.convert_rgb:
             self.rgb = cv2.cvtColor(self.rgb,cv2.COLOR_RGB2BGR)
         return 
     #function to get depth image from kinect
-    def _get_depth(self):
+    def get_depth(self):
         self.depth,_ = freenect.sync_get_depth()
+        if self.depth is None:
+           self.depth = np.array([])
         if self.convert_depth:   
         #clip max depth to 1023, convert to 8-bit grayscale
             np.clip(self.depth,0,2**10-1, self.depth)
             self.depth >>= 2
             self.depth = self.depth.astype(np.uint8)
+        self.process()
         return    
-    #function read depth camera    
-    def read(self):
-        if self.isopen:
-            self._get_depth()
-            self.process()
-        else:
-            self.depth=np.array([])
-        return
-    #function read rgb camera
-    def read_rgb(self):
-        if self.isopen:
-            self._get_video()
-            return self.rgb
-        else:
-            return np.array([])
 #pre-process image
     def process(self):
         if self.mask.shape==(0,):
               self.mask = 255*np.ones(self.depth.shape)
+              self.mask.astype(np.uint8)
         if self.ap_mask:
               self.depth = self.mask - self.depth
         
         #self.depth_p = self.depth*self.m+self.b
-        self.img_g = cv2.cvtColor(self.depth, cv2.COLOR_BGR2GRAY);
+        self.img_g = self.depth#cv2.cvtColor(self.depth, cv2.COLOR_BGR2GRAY);
         if self.filter:
           self.img_g = cv2.blur(self.img_g,(self.filterSize,self.filterSize))                
 
-        self.img_wb = cv2.threshold(self.img_g, self.trh, 200, cv2.THRESH_BINARY)[1]
-        self.img_wb = cv2.cvtColor(self.img_wb, cv2.COLOR_BGR2GRAY);
-        
-        cnts = cv2.findContours(self.img_wb.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        self.img_wb = cv2.threshold(self.img_g, self.trh, 255, cv2.THRESH_BINARY)[1]
+        #self.img_wb = cv2.cvtColor(self.img_wb, cv2.COLOR_BGR2GRAY);
+
+        cnts = cv2.findContours(255-self.img_wb.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         cnts = cnts[0] if imutils.is_cv2() else cnts[1]
         for c in cnts:
-	        # compute the center of the contour
-	        M = cv2.moments(c)
-	        cX = int(M["m10"] / M["m00"])
-	        cY = int(M["m01"] / M["m00"])
+                # compute the center of the contour
+                M = cv2.moments(c)
+                try:
+                        cX = int(M["m10"] / M["m00"])
+                        cY = int(M["m01"] / M["m00"])
  
-	        # draw the contour and center of the shape on the image
-	        cv2.drawContours(self.img_wb, [c], -1, (0, 255, 0), 2)
-        	cv2.circle(self.img_wb, (cX, cY), 7, (255, 255, 255), -1)
-	        cv2.putText(self.img_wb, "center", (cX - 20, cY - 20),
-		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-		
-		IMG=np.hstack((self.img_wb,self.img_g))            
+                        # draw the contour and center of the shape on the image
+                        cv2.drawContours(self.img_g, [c], -1, (0, 255, 0), 2)
+                        cv2.circle(self.img_g, (cX, cY), 7, (255, 255, 255), -1)
+                        cv2.putText(self.img_g, "center", (cX - 20, cY - 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 2)
+                except:
+                        pass
+                
+        
         if not(self.window == None) :
+           IMG=np.hstack((self.img_wb,self.img_g))            
            self.window.on_draw(IMG)
         return 
 ##########################################################
@@ -113,7 +106,7 @@ class secWindow(QMainWindow):
         self.Y      = None
         self.grid   = False
         self.showImg= False
-        self.contour= True
+        self.contour= False
         
         #Generar el entorno grafico
         self.setWindowTitle('Resultado')
@@ -164,12 +157,13 @@ class secWindow(QMainWindow):
 class AppForm(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-        self.setWindowTitle('Main: Modificar histograma')
+        self.setWindowTitle('Main')
         self.minV   = 0.0
         self.maxV   = 255.
         self.m      = 1.0
         self.b      = 0.0
         self.img_obj= kinect_cam()
+        self.img_obj.get_depth()
         self.img0   = self.img_obj.img_g
               
         self.create_main_frame()
@@ -180,19 +174,21 @@ class AppForm(QMainWindow):
         self.secW.levels    = 6
         self.img_obj.window = self.secW
         self.timer          = QTimer()
-        self.timer.timeout.connect(self.img_obj.read)
+        self.timer.timeout.connect(self.img_obj.get_depth)
         self.timer.start(70)
 #        self.timerStart = True
         
     #function update histogram using current image    
     def updateHist(self):        
         self.axes1.clear()
+        self.img0 = self.img_obj.img_g
         self.axes1.axes.hist(self.img0.ravel(), 255, facecolor='g')            
         self.axes1.set_xlim(0, 255)
         self.canvas.draw()
     #function ubdate image in main frame using current image    
     def updateImg(self):
         self.axes2.clear()
+        self.img0 = self.img_obj.img_g
         self.axes2.imshow(self.img0,cmap = 'jet', extent=[255,0,0, 255])    
         self.canvas.draw()  
     #function adjust parameters, apply mask, filter, slope, intercept, 
@@ -206,9 +202,8 @@ class AppForm(QMainWindow):
         self.img_obj.b          = self.b
         self.secW.levels        = int(str(self.e1_levels.text()))    
         self.img_obj.filterSize = int(str(self.e2_filter.text()))
-        self.img_obj.trh = int(str(self.e3_trh.text()))
-
-        #time.sleep(0.070)
+        self.img_obj.trh        =self.slider.value()
+        
         self.img0   = self.img_obj.img_g       
         self.updateHist()
         self.updateImg()
@@ -304,10 +299,16 @@ class AppForm(QMainWindow):
         self.e1_levels.setText('6')
         self.l4 = QLabel("Filter size: ")
         self.e2_filter = QLineEdit()
-        self.e2_filter.setText('5')
-        self.l5 = QLabel("Umbral: ")
-        self.e3_trh = QLineEdit()
-        self.e3_trh.setText('128')
+        self.e2_filter.setText('10')
+        
+        slider_label = QLabel('umbral (0-255):')
+        self.slider = QSlider(Qt.Horizontal)
+        self.slider.setRange(0, 255)
+        self.slider.setValue(128)
+        self.slider.setTracking(True)
+        self.slider.setTickPosition(QSlider.TicksBothSides)
+        self.connect(self.slider, SIGNAL('valueChanged(int)'), self.adjustImg)
+        
         
         self.mask_cb = QCheckBox("Mascara")
         self.mask_cb.setChecked(True)
@@ -328,7 +329,7 @@ class AppForm(QMainWindow):
             
         hbox2 = QHBoxLayout()    
         for w in [ self.l1, self.sp1, self.l2, self.sp2, self.l3, self.e1_levels, self.l4,
-                self.e2_filter, self.l5,self.e3_trh]:
+                self.e2_filter, slider_label,self.slider]:
             hbox2.addWidget(w)
             hbox2.setAlignment(w, Qt.AlignVCenter)
 
