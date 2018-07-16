@@ -38,7 +38,7 @@ class kinect_cam():
         self.filter        = True
         self.m             = 1.0
         self.b             = 0.0
-        self.mask = np.array([])
+        self.mask          = 255
     #function to get RGB image from kinect    
     def get_video(self):
         self.rgb,_ = freenect.sync_get_video()
@@ -61,9 +61,6 @@ class kinect_cam():
         return    
 #pre-process image
     def process(self):
-        if self.mask.shape==(0,):
-              self.mask = 255*np.ones(self.depth.shape)
-              self.mask.astype(np.uint8)
         if self.ap_mask:
               self.depth = self.mask - self.depth
         
@@ -75,21 +72,21 @@ class kinect_cam():
         self.img_wb = cv2.threshold(self.img_g, self.trh, 255, cv2.THRESH_BINARY)[1]
         #self.img_wb = cv2.cvtColor(self.img_wb, cv2.COLOR_BGR2GRAY);
 
-        cnts = cv2.findContours(255-self.img_wb.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        cnts = cv2.findContours(self.img_wb.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         cnts = cnts[0] if imutils.is_cv2() else cnts[1]
         for c in cnts:
-                # compute the center of the contour
-                M = cv2.moments(c)
-                try:
-                        cX = int(M["m10"] / M["m00"])
-                        cY = int(M["m01"] / M["m00"])
+           # compute the center of the contour
+           M = cv2.moments(c)
+           try:
+             cX = int(M["m10"] / M["m00"])
+             cY = int(M["m01"] / M["m00"])
  
-                        # draw the contour and center of the shape on the image
-                        cv2.drawContours(self.img_g, [c], -1, (0, 255, 0), 2)
-                        cv2.circle(self.img_g, (cX, cY), 7, (255, 255, 255), -1)
-                        cv2.putText(self.img_g, "center", (cX - 20, cY - 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 2)
-                except:
-                        pass
+             # draw the contour and center of the shape on the image
+             cv2.drawContours(self.img_g, [c], -1, (0, 255, 0), 2)
+             cv2.circle(self.img_g, (cX, cY), 7, (255, 255, 255), -1)
+             cv2.putText(self.img_g, "center", (cX - 20, cY - 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 2)
+           except:
+             pass
                 
         
         if not(self.window == None) :
@@ -164,7 +161,7 @@ class AppForm(QMainWindow):
         self.b      = 0.0
         self.img_obj= kinect_cam()
         self.img_obj.get_depth()
-        self.img0   = self.img_obj.img_g
+
               
         self.create_main_frame()
         self.secW   = secWindow(self.main_frame)
@@ -175,26 +172,24 @@ class AppForm(QMainWindow):
         self.img_obj.window = self.secW
         self.timer          = QTimer()
         self.timer.timeout.connect(self.img_obj.get_depth)
-        self.timer.start(70)
-#        self.timerStart = True
-        
+        self.timer.start(70)        
     #function update histogram using current image    
     def updateHist(self):        
         self.axes1.clear()
-        self.img0 = self.img_obj.img_g
-        self.axes1.axes.hist(self.img0.ravel(), 255, facecolor='g')            
+        img = self.img_obj.img_g
+        self.axes1.axes.hist(img.ravel(), 255, facecolor='g')            
         self.axes1.set_xlim(0, 255)
         self.canvas.draw()
     #function ubdate image in main frame using current image    
     def updateImg(self):
         self.axes2.clear()
-        self.img0 = self.img_obj.img_g
-        self.axes2.imshow(self.img0,cmap = 'jet', extent=[255,0,0, 255])    
+        img = self.img_obj.img_g
+        self.axes2.imshow(img,cmap = 'jet', extent=[255,0,0, 255])    
         self.canvas.draw()  
     #function adjust parameters, apply mask, filter, slope, intercept, 
     #levels for contour plot.......           
     def adjustImg(self):
-        """ Update image
+        """ Update parameters
         """
         self.img_obj.ap_mask    = self.mask_cb.isChecked()
         self.img_obj.filter     = self.filter_cb.isChecked()                          
