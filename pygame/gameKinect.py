@@ -3,8 +3,6 @@ Milton Orlando Sarria Paja
 USC
 Kinect and camera use
 """
-import pygame
-from pygame.locals import *
 import sys, os, random
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -12,11 +10,8 @@ import matplotlib
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
-from matplotlib.animation import FuncAnimation
-import threading
-import time
+from collections import deque
 ##
 sys.path.append('/usr/local/lib/python2.7/dist-packages/')
 import freenect
@@ -32,13 +27,26 @@ class kinect_cam():
         self.convert_rgb   = True
         self.convert_depth = True
         self.window        = None
-        self.trh           = 128 
+        self.trh           = 100 
         self.filterSize    = 10
-        self.ap_mask       = False
+        self.ap_mask       = True
         self.filter        = True
         self.m             = 1.0
         self.b             = 0.0
         self.mask          = 255
+        self.kernel        = np.ones((5, 5), np.uint8)
+        self.x             = 0
+        self.y             = 0        
+        self.up            = False
+        self.left          = False
+        self.right         = False        
+        self.down          = False
+        self.on_move       = False
+        self.buffer        = 15
+        self.pts           = deque(maxlen=self.buffer)
+        self.counter       = 0
+        self.direction     = ""
+        self.epsilon       = 40
     #function to get RGB image from kinect    
     def get_video(self):
         self.rgb,_ = freenect.sync_get_video()
@@ -56,42 +64,95 @@ class kinect_cam():
         #clip max depth to 1023, convert to 8-bit grayscale
             np.clip(self.depth,0,2**10-1, self.depth)
             self.depth >>= 2
-            self.depth = self.depth.astype(np.uint8)
+            self.depth = self.depth.astype(np.uint8)        
         self.process()
         return    
 #pre-process image
+    def movement(self):
+        
+        if (len(self.pts) == self.buffer):
+            # compute the difference between the x and y
+            # coordinates and re-initialize the direction
+            # text variables
+            dX = self.pts[-self.buffer][0] - self.pts[-1][0]
+            dY = self.pts[-self.buffer][1] - self.pts[-1][1]
+            
+            (dirX, dirY) = ("", "")
+                
+            # ensure there is significant movement in the
+            # x-direction
+            if np.abs(dX) > self.epsilon:
+                self.left  = np.sign(dX)==-1
+                self.right = np.sign(dX)==1
+                dirX = "Izquierda" if self.left else "Derecha"
+            else:
+                self.left  = False
+                self.right = False
+                
+            # ensure there is significant movement in the
+            # y-direction
+            if np.abs(dY) > self.epsilon:
+                self.up   = np.sign(dY)==-1
+                self.down = np.sign(dY)==1
+                dirY = "Arriba" if np.sign(dY) == -1 else "Abajo"
+            else: 
+                self.up   = False
+                self.down = False
+ 
+            # handle when both directions are non-empty
+            if dirX != "" and dirY != "":
+                self.direction = "{}-{}".format(dirY, dirX)
+ 
+            # otherwise, only one direction is non-empty
+            else:
+                self.direction = dirX if dirX != "" else dirY
+                
+        self.counter+=1
+        print self.direction
+        return
+           
     def process(self):
         if self.ap_mask:
               self.depth = self.mask - self.depth
         
         #self.depth_p = self.depth*self.m+self.b
-        self.img_g = self.depth#cv2.cvtColor(self.depth, cv2.COLOR_BGR2GRAY);
+        self.img_g = cv2.flip( self.depth, 1 ) #cv2.cvtColor(self.depth, cv2.COLOR_BGR2GRAY);
+        
         if self.filter:
           self.img_g = cv2.blur(self.img_g,(self.filterSize,self.filterSize))                
 
         self.img_wb = cv2.threshold(self.img_g, self.trh, 255, cv2.THRESH_BINARY)[1]
         #self.img_wb = cv2.cvtColor(self.img_wb, cv2.COLOR_BGR2GRAY);
-
+        self.img_wb = cv2.morphologyEx(self.img_wb, cv2.MORPH_CLOSE, self.kernel)
         cnts = cv2.findContours(self.img_wb.copy(), cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
         cnts = cnts[0] if imutils.is_cv2() else cnts[1]
-        for c in cnts:
-           # compute the center of the contour
-           M = cv2.moments(c)
-           try:
+        # ensure that at least one contour was found
+        self.x0=self.x
+        self.y0=self.y
+        if len(cnts) > 0:
+            # sort the contours according to their size in
+            # descending order
+            cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
+        
+#        for c in cnts:
+            c = cnts[0]  
+            # compute the center of the contour
+            M = cv2.moments(c)
+            try:
              cX = int(M["m10"] / M["m00"])
              cY = int(M["m01"] / M["m00"])
- 
-             # draw the contour and center of the shape on the image
-             cv2.drawContours(self.img_g, [c], -1, (0, 255, 0), 2)
-             cv2.circle(self.img_g, (cX, cY), 7, (255, 255, 255), -1)
-             cv2.putText(self.img_g, "center", (cX - 20, cY - 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 2)
-           except:
+             self.x=cX
+             self.y=cY
+             self.pts.appendleft((cX,cY))
+             if not(self.window == None):
+                # draw the contour and center of the shape on the image             
+                cv2.drawContours(self.img_g, [c], -1, (0, 255, 0), 2)
+                cv2.circle(self.img_g, (cX, cY), 7, (255, 255, 255), -1)
+                cv2.putText(self.img_g, "center", (cX - 20, cY - 20),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 2)
+                self.window.on_draw(self.img_g)
+            except:
              pass
-                
-        
-        if not(self.window == None) :
-           IMG=np.hstack((self.img_wb,self.img_g))            
-           self.window.on_draw(IMG)
+        self.movement()
         return 
 ##########################################################
 ##########################################################    
@@ -161,13 +222,10 @@ class AppForm(QMainWindow):
         self.b      = 0.0
         self.img_obj= kinect_cam()
         self.img_obj.get_depth()
-
-              
+             
         self.create_main_frame()
-        self.secW   = secWindow(self.main_frame)
-        #self.game = App()
-    
 
+        self.secW   = secWindow(self.main_frame)
         self.secW.levels    = 6
         self.img_obj.window = self.secW
         self.timer          = QTimer()
@@ -197,7 +255,8 @@ class AppForm(QMainWindow):
         self.img_obj.b          = self.b
         self.secW.levels        = int(str(self.e1_levels.text()))    
         self.img_obj.filterSize = int(str(self.e2_filter.text()))
-        self.img_obj.trh        =self.slider.value()
+        self.img_obj.trh        = self.slider.value()
+        self.slider_label.setText('umbral : '+str(self.img_obj.trh))
         
         self.img0   = self.img_obj.img_g       
         self.updateHist()
@@ -296,10 +355,10 @@ class AppForm(QMainWindow):
         self.e2_filter = QLineEdit()
         self.e2_filter.setText('10')
         
-        slider_label = QLabel('umbral (0-255):')
+        self.slider_label = QLabel('umbral : 100')
         self.slider = QSlider(Qt.Horizontal)
         self.slider.setRange(0, 255)
-        self.slider.setValue(128)
+        self.slider.setValue(100)
         self.slider.setTracking(True)
         self.slider.setTickPosition(QSlider.TicksBothSides)
         self.connect(self.slider, SIGNAL('valueChanged(int)'), self.adjustImg)
@@ -324,7 +383,7 @@ class AppForm(QMainWindow):
             
         hbox2 = QHBoxLayout()    
         for w in [ self.l1, self.sp1, self.l2, self.sp2, self.l3, self.e1_levels, self.l4,
-                self.e2_filter, slider_label,self.slider]:
+                self.e2_filter, self.slider_label,self.slider]:
             hbox2.addWidget(w)
             hbox2.setAlignment(w, Qt.AlignVCenter)
 
