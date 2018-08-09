@@ -1,7 +1,7 @@
 #Milton Orlando Sarria
 #USC - Cali
 
-from tools import reader, DynamicPlot, GetDisplay, comObj
+from tools import comObj
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import numpy as np

@@ -153,13 +153,13 @@ block_list = pygame.sprite.Group()
 # This is a list of every sprite. 
 # All blocks and the player block as well.
 all_sprites_list = pygame.sprite.Group()
-N=20
+N=50
 pos = []
 
 for i in range(N):
     # This represents a block
     # block = Block(BLACK, 20, 15)
-    block = Frog('frog2.png')
+    block = Frog('frog1.png')
  
     # Set a random location for the block
     touch=True
