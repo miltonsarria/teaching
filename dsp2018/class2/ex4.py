@@ -19,3 +19,4 @@ Vm=1            #valor de amplitud de la onda
 y=Vm*np.cos(w*n)
 #reproducir
 sd.play(y, fs)
+sd.wait()
