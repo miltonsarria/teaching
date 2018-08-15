@@ -1,12 +1,13 @@
 #Milton Orlando Sarria
 #analisis espectral de sinusoides
+#generar audio de forma artificial para simular un instrumento musical
 from pandas import Series
 import matplotlib.pyplot as plt
 import numpy as np
 from fourierFunc import fourierAn
 import wav_rw as wp
 from scipy.signal import get_window
-
+import sounddevice as sd
 
 def findIndx(absY):
     indx=[]

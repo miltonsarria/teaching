@@ -1,19 +1,21 @@
+#Milton Orlando Sarria
+#USC - Cali
+#visualizar datos provenientes de arduino en la consola
+
 import serial
 
-portName        = '/dev/ttyACM0' #verficar el nombre de su puerto
+portName        = '/dev/ttyACM0' #verficar el nombre de su puerto en windows sw usa COM1 o COM2....
 portRate        = 9600           #velocidad (baudrate)
 
-sr=serial.Serial(portName, portRate) 
+sr=serial.Serial(portName, portRate)
 
+#iniciar un ciclo infinito que lea los datos que aparecen en el puerto serial
 while True:
-  
   data=sr.readline()
   print(data)
-#observar que lo que se imprime contiene informacion adicional, ademas del dato que nos interesa.   
 
 #el siguiente codigo se puede copiar y pegar en el IDE de arduino para luego transmitirlo al chip
 
-  
 '''
 float t  = 0;  //valor de la variable independiente
 double value = 0;  //resultado que se va a transmitir al pc
