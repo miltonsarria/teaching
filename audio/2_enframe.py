@@ -8,11 +8,13 @@ from scipy.signal import get_window
 
 #cambiar el nombre del archivo
 
-archivo='sounds/sines-440-602-transient.wav'
+#archivo='sound/sines-440-602-transient.wav'
+archivo='sound/speech-female.wav'
 ######################
 # modificar el rango de frecuencias para ver una banda especifica
 rango =[0.0, 8000.0]
 (fs,x)=wavread(archivo)
+x=x/np.abs(x).max()
 print('frecuencia de muestreo: ' + str(fs) + ', numero de muestras: ' + str(x.size))
 
 long_ventana =  0.025 #en segundos
@@ -22,7 +24,7 @@ M = int(fs * long_ventana)
 
 H = int(fs * incremento)
 #tipo de ventana, window puede ser rectangular, hanning, hamming, blackman, blackmanharris
-window = 'blackman'
+window = 'rectangular'
 
 N = 2048 #si usa una longitud de ventana superior a 0.05 usar 4096
 
@@ -64,6 +66,22 @@ plt.plot(binFreq[bins],mX[bins])
 plt.xlabel('Frequency [Hz]')
 plt.ylabel('Magnitud en dB')
 
+
+e=np.zeros([X.shape[0]])
+s=np.zeros([X.shape[0]])
+fr=0.8
+for i in np.arange(1,X.shape[0]):
+    e[i]=np.hstack((np.abs(X[i]),e[i-1]*fr)).max()
+    s[i]=(X[i]**2).sum()/X[i].size
+
+#ei = np.interp(np.arange(x.size)/float(fs), frmTime, e)
+t=np.arange(x.size)/float(fs)
+plt.figure(3)
+plt.plot(frmTime,s/s.max(),'g')
+plt.plot(frmTime,e/e.max())
+plt.plot(t,np.abs(x),'r')
 plt.show()
+         
+         
          
        
