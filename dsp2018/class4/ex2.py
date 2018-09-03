@@ -33,4 +33,14 @@ plt.show()
 Et=(np.abs(x)**2).sum()
 Ef=(1./X.size*np.abs(X)**2).sum()
 
-print(Et,Ef)
+from scipy.fftpack import fft, ifft
+#from scipy import signal
+
+Xfft =  fft(x)
+X2  =  np.fft.fft(x)
+
+Efft=(1./Xfft.size*np.abs(Xfft)**2).sum()
+Ef2=(1./X2.size*np.abs(X2)**2).sum()
+
+
+print(Et,Ef,Efft,Ef2)
