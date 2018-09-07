@@ -1,7 +1,6 @@
-#!/usr/bin/env python3
-"""Plot the live microphone signal(s) with matplotlib.
-
-Matplotlib and NumPy have to be installed.
+"""Graficar la entrada del microfono
+usar sounddevice
+matplotlib
 
 """
 import argparse
