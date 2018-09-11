@@ -8,6 +8,7 @@ import serial
 import threading
 import time
 
+
 #######################################################################
 #######################################################################
 portname        = '/dev/ttyACM0' #verficar el nombre de su puerto
