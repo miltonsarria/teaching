@@ -6,7 +6,7 @@ import sys
 from numpy import arange, sin, pi
 
 import matplotlib
-matplotlib.use("Qt4Agg")
+#matplotlib.use("Qt4Agg")
 from matplotlib.backends.backend_qt4agg import (
     FigureCanvasQTAgg as FigureCanvas)
 from matplotlib.backends.qt_compat import QtCore, QtGui

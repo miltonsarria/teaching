@@ -10,7 +10,7 @@ import numpy as np
 #b = signal.firwin(80, 0.5, window=('kaiser', 8))
 
 #disenar un filtro pasa bajas usando una ventana hamming
-b = signal.firwin(81, [0.3, 0.5], window='hamming', pass_zero=False)
+b = signal.firwin(11, 0.5, window='hamming', pass_zero=True)
 #pasa bajas pass_zero=True
 #pasa altas pass_zero=False
 

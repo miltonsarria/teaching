@@ -18,6 +18,8 @@ y=Vm*signal.sawtooth(w*t)
 #generar onda de ruido aleatorio y de baja amplitud
 mu, sigma = 0, 3 # Media y desviacion estandard
 x = np.random.normal(mu, sigma, y.size)
+b = signal.firwin(127, 0.6, window='hamming', pass_zero=False)
+x=signal.lfilter(b, [1.0],x)
 #onda con ruido
 yx=y+x
 

@@ -1,0 +1,4 @@
+/home/sarria/python/audio/audio/speaker1/audio1.wav
+/home/sarria/python/audio/audio/speaker2/audio1.wav
+/home/sarria/python/audio/audio/speaker2/audio2.wav
+/home/sarria/python/audio/audio/speaker2/speaker1/audio10.wav
