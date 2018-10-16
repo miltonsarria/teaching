@@ -1,0 +1,3 @@
+PUERTO 4321
+DISPOSITIVO FocusRite.USB.analog-audio
+MODO 1
