@@ -1,0 +1,5 @@
+audio/isolated/mesa.wav	1
+audio/isolated/casa.wav	2
+audio/isolated/pesa.wav	3
+audio/isolated/queso.wav	4
+audio/isolated/peso.wav	5

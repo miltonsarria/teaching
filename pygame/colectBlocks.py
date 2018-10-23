@@ -142,8 +142,8 @@ class kinect_cam():
 pygame.init()
  
 # Set the height and width of the screen
-screen_width =  2*640
-screen_height = 2*480
+screen_width =  640
+screen_height = 480
 screen = pygame.display.set_mode([screen_width, screen_height])
  
 # This is a list of 'sprites.' Each block in the program is

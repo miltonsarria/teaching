@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* punteros
 Milton Orlando Sarria Paja
 */
@@ -45,3 +46,15 @@ for (int i=0; i < M; i++)
 return 1;
 }    
 
+=======
+#include <stdio.h>
+
+int main()
+{
+    int i=1;
+    while(++i <= 5)
+        printf("%d ",i++);
+    return 1;
+    
+}
+>>>>>>> exam

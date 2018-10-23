@@ -74,7 +74,7 @@ window     = 500    #miliseconds
 samplerate = 16000  #khz
 downsample = 1      #show every 'downsample' samples
 channels   = [1]
-device     = 10 
+device     = 11 
 interval   = 100    #update plot every 'interval' ms
 
 length     = int(window * samplerate / (1000 * downsample))

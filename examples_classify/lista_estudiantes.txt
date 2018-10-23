@@ -1,0 +1,463 @@
+audio/estudiantes/Larry/Pesa/pesa_3.wav	2
+audio/estudiantes/Larry/Pesa/pesa_5.wav	2
+audio/estudiantes/Larry/Pesa/pesa_6.wav	2
+audio/estudiantes/Larry/Pesa/pesa_4.wav	2
+audio/estudiantes/Larry/Pesa/pesa_10.wav	2
+audio/estudiantes/Larry/Pesa/pesa_2.wav	2
+audio/estudiantes/Larry/Pesa/pesa_1.wav	2
+audio/estudiantes/Larry/Pesa/pesa_8.wav	2
+audio/estudiantes/Larry/Pesa/pesa_7.wav	2
+audio/estudiantes/Larry/Pesa/pesa_9.wav	2
+audio/estudiantes/Larry/Queso/Queso_2.wav	3
+audio/estudiantes/Larry/Queso/Queso_10.wav	3
+audio/estudiantes/Larry/Queso/Queso_9.wav	3
+audio/estudiantes/Larry/Queso/Queso_3.wav	3
+audio/estudiantes/Larry/Queso/Queso_4.wav	3
+audio/estudiantes/Larry/Queso/Queso_7.wav	3
+audio/estudiantes/Larry/Queso/Queso_8.wav	3
+audio/estudiantes/Larry/Queso/Queso_6.wav	3
+audio/estudiantes/Larry/Queso/Queso_5.wav	3
+audio/estudiantes/Larry/Queso/Queso_1.wav	3
+audio/estudiantes/Larry/Si/si_1.wav	5
+audio/estudiantes/Larry/Si/si_6.wav	5
+audio/estudiantes/Larry/Si/si_2.wav	5
+audio/estudiantes/Larry/Si/si_8.wav	5
+audio/estudiantes/Larry/Si/si_9.wav	5
+audio/estudiantes/Larry/Si/si_7.wav	5
+audio/estudiantes/Larry/Si/si_5.wav	5
+audio/estudiantes/Larry/Si/si_4.wav	5
+audio/estudiantes/Larry/Si/si_10.wav	5
+audio/estudiantes/Larry/Si/si_3.wav	5
+audio/estudiantes/Larry/Peso/peso_9.wav	4
+audio/estudiantes/Larry/Peso/peso_5.wav	4
+audio/estudiantes/Larry/Peso/peso_4.wav	4
+audio/estudiantes/Larry/Peso/peso_6.wav	4
+audio/estudiantes/Larry/Peso/peso_2.wav	4
+audio/estudiantes/Larry/Peso/peso_7.wav	4
+audio/estudiantes/Larry/Peso/peso_8.wav	4
+audio/estudiantes/Larry/Peso/peso_1.wav	4
+audio/estudiantes/Larry/Peso/peso_3.wav	4
+audio/estudiantes/Larry/Peso/peso_10.wav	4
+audio/estudiantes/Larry/Mesa/mesa_2.wav	1
+audio/estudiantes/Larry/Mesa/mesa_4.wav	1
+audio/estudiantes/Larry/Mesa/mesa_6.wav	1
+audio/estudiantes/Larry/Mesa/mesa_3.wav	1
+audio/estudiantes/Larry/Mesa/mesa_9.wav	1
+audio/estudiantes/Larry/Mesa/mesa_8.wav	1
+audio/estudiantes/Larry/Mesa/mesa_1.wav	1
+audio/estudiantes/Larry/Mesa/mesa_7.wav	1
+audio/estudiantes/Larry/Mesa/mesa_5.wav	1
+audio/estudiantes/Larry/Mesa/mesa_10.wav	1
+audio/estudiantes/Larry/No/no_9.wav	6
+audio/estudiantes/Larry/No/no_8.wav	6
+audio/estudiantes/Larry/No/no_3.wav	6
+audio/estudiantes/Larry/No/no_4.wav	6
+audio/estudiantes/Larry/No/no_6.wav	6
+audio/estudiantes/Larry/No/no_2.wav	6
+audio/estudiantes/Larry/No/no_10.wav	6
+audio/estudiantes/Larry/No/no_7.wav	6
+audio/estudiantes/Larry/No/no_5.wav	6
+audio/estudiantes/Larry/No/no_1.wav	6
+audio/estudiantes/edison/queso/queso17.wav	3
+audio/estudiantes/edison/queso/queso20.wav	3
+audio/estudiantes/edison/queso/queso16.wav	3
+audio/estudiantes/edison/queso/queso12.wav	3
+audio/estudiantes/edison/queso/queso13.wav	3
+audio/estudiantes/edison/queso/queso14.wav	3
+audio/estudiantes/edison/queso/queso11.wav	3
+audio/estudiantes/edison/queso/queso18.wav	3
+audio/estudiantes/edison/queso/queso15.wav	3
+audio/estudiantes/edison/queso/queso19.wav	3
+audio/estudiantes/edison/mesa/mesa13.wav	1
+audio/estudiantes/edison/mesa/mesa16.wav	1
+audio/estudiantes/edison/mesa/mesa15.wav	1
+audio/estudiantes/edison/mesa/mesa14.wav	1
+audio/estudiantes/edison/mesa/mesa17.wav	1
+audio/estudiantes/edison/mesa/mesa19.wav	1
+audio/estudiantes/edison/mesa/mesa20.wav	1
+audio/estudiantes/edison/mesa/mesa12.wav	1
+audio/estudiantes/edison/mesa/mesa11.wav	1
+audio/estudiantes/edison/mesa/mesa18.wav	1
+audio/estudiantes/edison/pesa/pesa11.wav	2
+audio/estudiantes/edison/pesa/pesa12.wav	2
+audio/estudiantes/edison/pesa/pesa18.wav	2
+audio/estudiantes/edison/pesa/pesa19.wav	2
+audio/estudiantes/edison/pesa/pesa17.wav	2
+audio/estudiantes/edison/pesa/pesa14.wav	2
+audio/estudiantes/edison/pesa/pesa15.wav	2
+audio/estudiantes/edison/pesa/pesa13.wav	2
+audio/estudiantes/edison/pesa/pesa20.wav	2
+audio/estudiantes/edison/pesa/pesa16.wav	2
+audio/estudiantes/edison/si/si16.wav	5
+audio/estudiantes/edison/si/si14.wav	5
+audio/estudiantes/edison/si/si17.wav	5
+audio/estudiantes/edison/si/si12.wav	5
+audio/estudiantes/edison/si/si11.wav	5
+audio/estudiantes/edison/si/si18.wav	5
+audio/estudiantes/edison/si/si19.wav	5
+audio/estudiantes/edison/si/si13.wav	5
+audio/estudiantes/edison/si/si15.wav	5
+audio/estudiantes/edison/si/si20.wav	5
+audio/estudiantes/edison/no/record20181015230019.wav	6
+audio/estudiantes/edison/no/record20181015230015.wav	6
+audio/estudiantes/edison/no/record20181015230053.wav	6
+audio/estudiantes/edison/no/record20181015225956.wav	6
+audio/estudiantes/edison/no/record20181015230046.wav	6
+audio/estudiantes/edison/no/record20181015230000.wav	6
+audio/estudiantes/edison/no/record20181015230050.wav	6
+audio/estudiantes/edison/no/record20181015230027.wav	6
+audio/estudiantes/edison/no/record20181015230023.wav	6
+audio/estudiantes/edison/no/record20181015230041.wav	6
+audio/estudiantes/edison/peso/peso17.wav	4
+audio/estudiantes/edison/peso/peso19.wav	4
+audio/estudiantes/edison/peso/peso14.wav	4
+audio/estudiantes/edison/peso/peso20.wav	4
+audio/estudiantes/edison/peso/peso11.wav	4
+audio/estudiantes/edison/peso/peso15.wav	4
+audio/estudiantes/edison/peso/peso12.wav	4
+audio/estudiantes/edison/peso/peso18.wav	4
+audio/estudiantes/edison/peso/peso16.wav	4
+audio/estudiantes/edison/peso/peso13.wav	4
+audio/estudiantes/suaza/queso/queso8.wav	3
+audio/estudiantes/suaza/queso/queso10.wav	3
+audio/estudiantes/suaza/queso/queso4.wav	3
+audio/estudiantes/suaza/queso/queso6.wav	3
+audio/estudiantes/suaza/queso/queso9.wav	3
+audio/estudiantes/suaza/queso/queso2.wav	3
+audio/estudiantes/suaza/queso/queso3.wav	3
+audio/estudiantes/suaza/queso/queso5.wav	3
+audio/estudiantes/suaza/queso/queso1.wav	3
+audio/estudiantes/suaza/queso/queso7.wav	3
+audio/estudiantes/suaza/mesa/mesa6.wav	1
+audio/estudiantes/suaza/mesa/mesa5.wav	1
+audio/estudiantes/suaza/mesa/mesa7.wav	1
+audio/estudiantes/suaza/mesa/mesa4.wav	1
+audio/estudiantes/suaza/mesa/mesa2.wav	1
+audio/estudiantes/suaza/mesa/mesa10.wav	1
+audio/estudiantes/suaza/mesa/mesa8.wav	1
+audio/estudiantes/suaza/mesa/mesa3.wav	1
+audio/estudiantes/suaza/mesa/mesa9.wav	1
+audio/estudiantes/suaza/mesa/mesa1.wav	1
+audio/estudiantes/suaza/pesa/pesa9.wav	2
+audio/estudiantes/suaza/pesa/pesa5.wav	2
+audio/estudiantes/suaza/pesa/pesa8.wav	2
+audio/estudiantes/suaza/pesa/pesa2.wav	2
+audio/estudiantes/suaza/pesa/pesa6.wav	2
+audio/estudiantes/suaza/pesa/pesa4.wav	2
+audio/estudiantes/suaza/pesa/pesa10.wav	2
+audio/estudiantes/suaza/pesa/pesa1.wav	2
+audio/estudiantes/suaza/pesa/pesa3.wav	2
+audio/estudiantes/suaza/pesa/pesa7.wav	2
+audio/estudiantes/suaza/si/si2.wav	5
+audio/estudiantes/suaza/si/si3.wav	5
+audio/estudiantes/suaza/si/si1.wav	5
+audio/estudiantes/suaza/si/si10.wav	5
+audio/estudiantes/suaza/si/si8.wav	5
+audio/estudiantes/suaza/si/si5.wav	5
+audio/estudiantes/suaza/si/si6.wav	5
+audio/estudiantes/suaza/si/si9.wav	5
+audio/estudiantes/suaza/si/si4.wav	5
+audio/estudiantes/suaza/si/si7.wav	5
+audio/estudiantes/suaza/no/no1.wav	6
+audio/estudiantes/suaza/no/no8.wav	6
+audio/estudiantes/suaza/no/no10.wav	6
+audio/estudiantes/suaza/no/no6.wav	6
+audio/estudiantes/suaza/no/no5.wav	6
+audio/estudiantes/suaza/no/no3.wav	6
+audio/estudiantes/suaza/no/no4.wav	6
+audio/estudiantes/suaza/no/no7.wav	6
+audio/estudiantes/suaza/no/no9.wav	6
+audio/estudiantes/suaza/no/no2.wav	6
+audio/estudiantes/suaza/pesos/pesos9.wav	4
+audio/estudiantes/suaza/pesos/pesos8.wav	4
+audio/estudiantes/suaza/pesos/pesos2.wav	4
+audio/estudiantes/suaza/pesos/pesos1.wav	4
+audio/estudiantes/suaza/pesos/pesos10.wav	4
+audio/estudiantes/suaza/pesos/pesos4.wav	4
+audio/estudiantes/suaza/pesos/pesos3.wav	4
+audio/estudiantes/suaza/pesos/pesos5.wav	4
+audio/estudiantes/suaza/pesos/pesos7.wav	4
+audio/estudiantes/suaza/pesos/pesos6.wav	4
+audio/estudiantes/dayan/queso/queso17.wav	3
+audio/estudiantes/dayan/queso/queso20.wav	3
+audio/estudiantes/dayan/queso/queso16.wav	3
+audio/estudiantes/dayan/queso/queso12.wav	3
+audio/estudiantes/dayan/queso/queso13.wav	3
+audio/estudiantes/dayan/queso/queso14.wav	3
+audio/estudiantes/dayan/queso/queso11.wav	3
+audio/estudiantes/dayan/queso/queso18.wav	3
+audio/estudiantes/dayan/queso/queso15.wav	3
+audio/estudiantes/dayan/queso/queso19.wav	3
+audio/estudiantes/dayan/mesa/mesa13.wav	1
+audio/estudiantes/dayan/mesa/mesa16.wav	1
+audio/estudiantes/dayan/mesa/mesa15.wav	1
+audio/estudiantes/dayan/mesa/mesa14.wav	1
+audio/estudiantes/dayan/mesa/mesa17.wav	1
+audio/estudiantes/dayan/mesa/mesa19.wav	1
+audio/estudiantes/dayan/mesa/mesa20.wav	1
+audio/estudiantes/dayan/mesa/mesa12.wav	1
+audio/estudiantes/dayan/mesa/mesa11.wav	1
+audio/estudiantes/dayan/mesa/mesa18.wav	1
+audio/estudiantes/dayan/pesa/pesa11.wav	2
+audio/estudiantes/dayan/pesa/pesa12.wav	2
+audio/estudiantes/dayan/pesa/pesa18.wav	2
+audio/estudiantes/dayan/pesa/pesa19.wav	2
+audio/estudiantes/dayan/pesa/pesa17.wav	2
+audio/estudiantes/dayan/pesa/pesa14.wav	2
+audio/estudiantes/dayan/pesa/pesa15.wav	2
+audio/estudiantes/dayan/pesa/pesa13.wav	2
+audio/estudiantes/dayan/pesa/pesa20.wav	2
+audio/estudiantes/dayan/pesa/pesa16.wav	2
+audio/estudiantes/dayan/si/si/si16.wav	5
+audio/estudiantes/dayan/si/si/si14.wav	5
+audio/estudiantes/dayan/si/si/si17.wav	5
+audio/estudiantes/dayan/si/si/si12.wav	5
+audio/estudiantes/dayan/si/si/si11.wav	5
+audio/estudiantes/dayan/si/si/si18.wav	5
+audio/estudiantes/dayan/si/si/si19.wav	5
+audio/estudiantes/dayan/si/si/si13.wav	5
+audio/estudiantes/dayan/si/si/si15.wav	5
+audio/estudiantes/dayan/si/si/si20.wav	5
+audio/estudiantes/dayan/no/no/record20181015230019.wav	6
+audio/estudiantes/dayan/no/no/record20181015230015.wav	6
+audio/estudiantes/dayan/no/no/record20181015230053.wav	6
+audio/estudiantes/dayan/no/no/record20181015225956.wav	6
+audio/estudiantes/dayan/no/no/record20181015230046.wav	6
+audio/estudiantes/dayan/no/no/record20181015230000.wav	6
+audio/estudiantes/dayan/no/no/record20181015230050.wav	6
+audio/estudiantes/dayan/no/no/record20181015230027.wav	6
+audio/estudiantes/dayan/no/no/record20181015230023.wav	6
+audio/estudiantes/dayan/no/no/record20181015230041.wav	6
+audio/estudiantes/dayan/peso/peso17.wav	4
+audio/estudiantes/dayan/peso/peso19.wav	4
+audio/estudiantes/dayan/peso/peso14.wav	4
+audio/estudiantes/dayan/peso/peso20.wav	4
+audio/estudiantes/dayan/peso/peso11.wav	4
+audio/estudiantes/dayan/peso/peso15.wav	4
+audio/estudiantes/dayan/peso/peso12.wav	4
+audio/estudiantes/dayan/peso/peso18.wav	4
+audio/estudiantes/dayan/peso/peso16.wav	4
+audio/estudiantes/dayan/peso/peso13.wav	4
+audio/estudiantes/fabian/queso/queso0.wav	3
+audio/estudiantes/fabian/queso/queso8.wav	3
+audio/estudiantes/fabian/queso/queso4.wav	3
+audio/estudiantes/fabian/queso/queso6.wav	3
+audio/estudiantes/fabian/queso/queso9.wav	3
+audio/estudiantes/fabian/queso/queso2.wav	3
+audio/estudiantes/fabian/queso/queso3.wav	3
+audio/estudiantes/fabian/queso/queso5.wav	3
+audio/estudiantes/fabian/queso/queso1.wav	3
+audio/estudiantes/fabian/queso/queso7.wav	3
+audio/estudiantes/fabian/mesa/mesa6.wav	1
+audio/estudiantes/fabian/mesa/mesa5.wav	1
+audio/estudiantes/fabian/mesa/mesa7.wav	1
+audio/estudiantes/fabian/mesa/mesa4.wav	1
+audio/estudiantes/fabian/mesa/mesa2.wav	1
+audio/estudiantes/fabian/mesa/mesa0.wav	1
+audio/estudiantes/fabian/mesa/mesa8.wav	1
+audio/estudiantes/fabian/mesa/mesa3.wav	1
+audio/estudiantes/fabian/mesa/mesa9.wav	1
+audio/estudiantes/fabian/mesa/mesa1.wav	1
+audio/estudiantes/fabian/pesa/pesa9.wav	2
+audio/estudiantes/fabian/pesa/pesa5.wav	2
+audio/estudiantes/fabian/pesa/pesa8.wav	2
+audio/estudiantes/fabian/pesa/pesa2.wav	2
+audio/estudiantes/fabian/pesa/pesa6.wav	2
+audio/estudiantes/fabian/pesa/pesa4.wav	2
+audio/estudiantes/fabian/pesa/pesa0.wav	2
+audio/estudiantes/fabian/pesa/pesa1.wav	2
+audio/estudiantes/fabian/pesa/pesa3.wav	2
+audio/estudiantes/fabian/pesa/pesa7.wav	2
+audio/estudiantes/fabian/si/si2.wav	5
+audio/estudiantes/fabian/si/si3.wav	5
+audio/estudiantes/fabian/si/si1.wav	5
+audio/estudiantes/fabian/si/si8.wav	5
+audio/estudiantes/fabian/si/si0.wav	5
+audio/estudiantes/fabian/si/si5.wav	5
+audio/estudiantes/fabian/si/si6.wav	5
+audio/estudiantes/fabian/si/si9.wav	5
+audio/estudiantes/fabian/si/si4.wav	5
+audio/estudiantes/fabian/si/si7.wav	5
+audio/estudiantes/fabian/no/no1.wav	6
+audio/estudiantes/fabian/no/no8.wav	6
+audio/estudiantes/fabian/no/no6.wav	6
+audio/estudiantes/fabian/no/no5.wav	6
+audio/estudiantes/fabian/no/no3.wav	6
+audio/estudiantes/fabian/no/no4.wav	6
+audio/estudiantes/fabian/no/no7.wav	6
+audio/estudiantes/fabian/no/no9.wav	6
+audio/estudiantes/fabian/no/no2.wav	6
+audio/estudiantes/fabian/no/no0.wav	6
+audio/estudiantes/fabian/peso/peso1.wav	4
+audio/estudiantes/fabian/peso/peso4.wav	4
+audio/estudiantes/fabian/peso/peso9.wav	4
+audio/estudiantes/fabian/peso/peso3.wav	4
+audio/estudiantes/fabian/peso/peso7.wav	4
+audio/estudiantes/fabian/peso/peso5.wav	4
+audio/estudiantes/fabian/peso/peso8.wav	4
+audio/estudiantes/fabian/peso/peso0.wav	4
+audio/estudiantes/fabian/peso/peso6.wav	4
+audio/estudiantes/fabian/peso/peso2.wav	4
+audio/estudiantes/barragan/Queso6.wav	3
+audio/estudiantes/barragan/Si6.wav	5
+audio/estudiantes/barragan/No8.wav	6
+audio/estudiantes/barragan/Si10.wav	5
+audio/estudiantes/barragan/Peso4.wav	4
+audio/estudiantes/barragan/No9.wav	6
+audio/estudiantes/barragan/No4.wav	6
+audio/estudiantes/barragan/Pesa10.wav	2
+audio/estudiantes/barragan/Si9.wav	5
+audio/estudiantes/barragan/Si7.wav	5
+audio/estudiantes/barragan/Si3.wav	5
+audio/estudiantes/barragan/Peso10.wav	4
+audio/estudiantes/barragan/Si4.wav	5
+audio/estudiantes/barragan/No1.wav	6
+audio/estudiantes/barragan/Peso8.wav	4
+audio/estudiantes/barragan/Peso5.wav	4
+audio/estudiantes/barragan/Queso3.wav	3
+audio/estudiantes/barragan/Si8.wav	5
+audio/estudiantes/barragan/Queso7.wav	3
+audio/estudiantes/barragan/No7.wav	6
+audio/estudiantes/barragan/Pesa8.wav	2
+audio/estudiantes/barragan/No3.wav	6
+audio/estudiantes/barragan/No2.wav	6
+audio/estudiantes/barragan/No10.wav	6
+audio/estudiantes/barragan/Queso9.wav	3
+audio/estudiantes/barragan/Si1.wav	5
+audio/estudiantes/barragan/Si2.wav	5
+audio/estudiantes/barragan/Queso10.wav	3
+audio/estudiantes/barragan/Peso1.wav	4
+audio/estudiantes/barragan/Si5.wav	5
+audio/estudiantes/barragan/Peso9.wav	4
+audio/estudiantes/barragan/Peso6.wav	4
+audio/estudiantes/barragan/Queso8.wav	3
+audio/estudiantes/barragan/Queso1.wav	3
+audio/estudiantes/barragan/Queso2.wav	3
+audio/estudiantes/barragan/Queso5.wav	3
+audio/estudiantes/barragan/Pesa9.wav	2
+audio/estudiantes/barragan/Peso2.wav	4
+audio/estudiantes/barragan/Queso4.wav	3
+audio/estudiantes/barragan/No5.wav	6
+audio/estudiantes/barragan/Peso7.wav	4
+audio/estudiantes/barragan/Peso3.wav	4
+audio/estudiantes/barragan/No6.wav	6
+audio/estudiantes/Hoyos/Pesa/Voz 22.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 28.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 24.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 30.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 23.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 27.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 21.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 29.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 26.wav	2
+audio/estudiantes/Hoyos/Pesa/Voz 25.wav	2
+audio/estudiantes/Hoyos/Queso/Voz 13.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 17.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 19.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 12.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 11.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 15.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 14.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 18.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 16.wav	3
+audio/estudiantes/Hoyos/Queso/Voz 20.wav	3
+audio/estudiantes/Hoyos/Si/Voz 45.wav	5
+audio/estudiantes/Hoyos/Si/Voz 48.wav	5
+audio/estudiantes/Hoyos/Si/Voz 44.wav	5
+audio/estudiantes/Hoyos/Si/Voz 43.wav	5
+audio/estudiantes/Hoyos/Si/Voz 46.wav	5
+audio/estudiantes/Hoyos/Si/Voz 47.wav	5
+audio/estudiantes/Hoyos/Si/Voz 49.wav	5
+audio/estudiantes/Hoyos/Si/Voz 50.wav	5
+audio/estudiantes/Hoyos/Si/Voz 42.wav	5
+audio/estudiantes/Hoyos/Si/Voz 41.wav	5
+audio/estudiantes/Hoyos/Peso/Voz 6.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 3.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 10.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 4.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 9.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 2.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 1.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 7.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 8.wav	4
+audio/estudiantes/Hoyos/Peso/Voz 5.wav	4
+audio/estudiantes/Hoyos/Mesa/Voz 38.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 35.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 32.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 34.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 33.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 36.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 39.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 40.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 31.wav	1
+audio/estudiantes/Hoyos/Mesa/Voz 37.wav	1
+audio/estudiantes/Hoyos/No/Voz 55.wav	6
+audio/estudiantes/Hoyos/No/Voz 52.wav	6
+audio/estudiantes/Hoyos/No/Voz 53.wav	6
+audio/estudiantes/Hoyos/No/Voz 54.wav	6
+audio/estudiantes/Hoyos/No/Voz 57.wav	6
+audio/estudiantes/Hoyos/No/Voz 56.wav	6
+audio/estudiantes/Hoyos/No/Voz 60.wav	6
+audio/estudiantes/Hoyos/No/Voz 58.wav	6
+audio/estudiantes/Hoyos/No/Voz 59.wav	6
+audio/estudiantes/Hoyos/No/Voz 51.wav	6
+audio/estudiantes/restrepo/queso/Queso6.wav	3
+audio/estudiantes/restrepo/queso/Queso3.wav	3
+audio/estudiantes/restrepo/queso/Queso7.wav	3
+audio/estudiantes/restrepo/queso/Queso9.wav	3
+audio/estudiantes/restrepo/queso/Queso10.wav	3
+audio/estudiantes/restrepo/queso/Queso8.wav	3
+audio/estudiantes/restrepo/queso/Queso1.wav	3
+audio/estudiantes/restrepo/queso/Queso2.wav	3
+audio/estudiantes/restrepo/queso/Queso5.wav	3
+audio/estudiantes/restrepo/queso/Queso4.wav	3
+audio/estudiantes/restrepo/mesa/Mesa1.wav	1
+audio/estudiantes/restrepo/mesa/Mesa7.wav	1
+audio/estudiantes/restrepo/mesa/Mesa9.wav	1
+audio/estudiantes/restrepo/mesa/Mesa8.wav	1
+audio/estudiantes/restrepo/mesa/Mesa10.wav	1
+audio/estudiantes/restrepo/mesa/Mesa2.wav	1
+audio/estudiantes/restrepo/mesa/Mesa3.wav	1
+audio/estudiantes/restrepo/mesa/Mesa6.wav	1
+audio/estudiantes/restrepo/mesa/Mesa5.wav	1
+audio/estudiantes/restrepo/mesa/Mesa4.wav	1
+audio/estudiantes/restrepo/pesa/Pesa10.wav	2
+audio/estudiantes/restrepo/pesa/Pesa7.wav	2
+audio/estudiantes/restrepo/pesa/Pesa6.wav	2
+audio/estudiantes/restrepo/pesa/Pesa5.wav	2
+audio/estudiantes/restrepo/pesa/Pesa2.wav	2
+audio/estudiantes/restrepo/pesa/Pesa8.wav	2
+audio/estudiantes/restrepo/pesa/Pesa3.wav	2
+audio/estudiantes/restrepo/pesa/Pesa4.wav	2
+audio/estudiantes/restrepo/pesa/Pesa 1.wav	2
+audio/estudiantes/restrepo/pesa/Pesa9.wav	2
+audio/estudiantes/restrepo/si/Si6.wav	5
+audio/estudiantes/restrepo/si/Si10.wav	5
+audio/estudiantes/restrepo/si/Si9.wav	5
+audio/estudiantes/restrepo/si/Si7.wav	5
+audio/estudiantes/restrepo/si/Si3.wav	5
+audio/estudiantes/restrepo/si/Si4.wav	5
+audio/estudiantes/restrepo/si/Si8.wav	5
+audio/estudiantes/restrepo/si/Si1.wav	5
+audio/estudiantes/restrepo/si/Si2.wav	5
+audio/estudiantes/restrepo/si/Si5.wav	5
+audio/estudiantes/restrepo/no/No8.wav	6
+audio/estudiantes/restrepo/no/No9.wav	6
+audio/estudiantes/restrepo/no/No4.wav	6
+audio/estudiantes/restrepo/no/No1.wav	6
+audio/estudiantes/restrepo/no/No7.wav	6
+audio/estudiantes/restrepo/no/No3.wav	6
+audio/estudiantes/restrepo/no/No2.wav	6
+audio/estudiantes/restrepo/no/No10.wav	6
+audio/estudiantes/restrepo/no/No5.wav	6
+audio/estudiantes/restrepo/no/No6.wav	6
+audio/estudiantes/restrepo/peso/Peso4.wav	4
+audio/estudiantes/restrepo/peso/Peso10.wav	4
+audio/estudiantes/restrepo/peso/Peso8.wav	4
+audio/estudiantes/restrepo/peso/Peso5.wav	4
+audio/estudiantes/restrepo/peso/Peso1.wav	4
+audio/estudiantes/restrepo/peso/Peso9.wav	4
+audio/estudiantes/restrepo/peso/Peso6.wav	4
+audio/estudiantes/restrepo/peso/Peso2.wav	4
+audio/estudiantes/restrepo/peso/Peso7.wav	4
+audio/estudiantes/restrepo/peso/Peso3.wav	4

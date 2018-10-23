@@ -39,7 +39,7 @@ class AppForm(QMainWindow):
         QMainWindow.__init__(self, parent)
         self.setWindowTitle('Main: ventana principal')
         self.create_main_frame()
-        self.secW           = secWindow(self.main_frame)
+        self.secW  = secWindow(self.main_frame)
       
     
     #function when value in spinbox changes update values

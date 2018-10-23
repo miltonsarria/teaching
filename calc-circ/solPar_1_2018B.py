@@ -36,16 +36,16 @@ for ii in np.arange(x.shape[0]):
 
     A=d[0]
     B=d[1]
-    
+
     if A==0:
         A = 8
 
     if B==0:
         B = 8
-    
+
     ##################################################
     #1) definir parametros del circuito
-    
+
     L1  = 1j*B      #valor del inductor 1
     L2  = 1j*2*B      #valor del inductor 2
     R1  = A
