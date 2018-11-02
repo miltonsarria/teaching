@@ -33,10 +33,10 @@ for line in lines:
     logE[0:naverage-1]=logE[naverage:].min()
     logE=np.roll(logE, -naverage/2, axis=0)
     
-    #nle = signal.resample(logE,10*rate)
-    #ne = signal.resample(e,10*rate)
-    #plt.plot(sig[0:10*rate]); plt.plot(ne); plt.plot(nle); 
-    #plt.show()
+    nle = signal.resample(logE,10*rate)
+    ne = signal.resample(e,10*rate)
+    plt.plot(sig[0:10*rate]); plt.plot(ne); plt.plot(nle); 
+    plt.show()
     
     tresh=logE>-7
     segmentos=np.hstack((tresh,0))-np.hstack((0,tresh))
