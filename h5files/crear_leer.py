@@ -14,14 +14,14 @@ for archivo in files:
     array=np.random.rand(100,13)
     
     hf = h5py.File(path_feats+archivo, "w") #handle file
-    dset = hf.create_dataset('mfcc', data=array)
+    dset = hf.create_dataset('data', data=array)
     hf.close()
 
 del array, hf, dset
 ###################leer datos####
 #forma  simple leer solo el primer archivo
 hf = h5py.File(path_feats+files[1], "r")
-array = np.array(hf.get('mfcc'))
+array = np.array(hf.get('data'))
 print(array)
 print(array.shape)
 
