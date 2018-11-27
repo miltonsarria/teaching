@@ -1,4 +1,5 @@
 hay tres opciones
+sudo apt-get install espeak
 1) usar pyttsx
 para usar esta solucion se tiene que instalar el paquete pyttsx de la siguiente forma
 

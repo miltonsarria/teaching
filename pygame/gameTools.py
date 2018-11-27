@@ -6,16 +6,20 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import cv2
 import imutils
-import pyttsx
-
+#import pyttsx
+from collections import deque
 # Define some colors
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
 RED   = (255,   0,   0)
 
-lower = np.array([80,100,100])
-upper = np.array([110,255,255])
+#[[[176 148 203]]]
+
+lower = np.array([160,100,100])
+upper = np.array([190,255,255])
 kernel = np.ones((10,10),np.uint8)
+
+
 
 #######################################
 #class AppForm(QMainWindow):
@@ -48,31 +52,45 @@ class AppForm(QWidget):
         self.e2.setText('')
         self.start_button = QPushButton("Iniciar")
         self.connect(self.start_button, SIGNAL('clicked()'), self.iniciar)
+        self.b1 = QRadioButton("Mouse")
+        self.b1.setChecked(True)
+        self.b1.toggled.connect(lambda:self.btnstate(self.b1))
+        self.b2 = QRadioButton("Camera")
+        self.b2.toggled.connect(lambda:self.btnstate(self.b2))
+
         vbox = QVBoxLayout()
-        for w in [self.l1,self.e1,  self.l2,  self.e2,  self.start_button]:
+        for w in [self.l1,self.e1,  self.l2,  self.e2,  self.b1, self.b2, self.start_button]:
             vbox.addWidget(w)
             vbox.setAlignment(w, Qt.AlignVCenter)
         
         #self.main_frame.setLayout(vbox)
         #self.setCentralWidget(self.main_frame)
         self.setLayout(vbox) 
-        
         self.setGeometry(300, 300, 400, 450)
         self.show() #mostrar lo construido   
     def iniciar(self):
         #self.close()
         if self.game.stop:
-            self.game.start()
-            
+            self.game.start()            
         else:
             self.game.doneSesion=False
-            
+    
+    ###############
+    def btnstate(self,b):
+	
+      if b.text() == "Mouse":
+         if b.isChecked() == True:
+            self.game.mouse=True       
+				
+      if b.text() == "Camera":
+         if b.isChecked() == True:
+            self.game.mouse=False       
 ##########################################################################################             
 class Player(pygame.sprite.Sprite):
     """
     This class represents the player
     """ 
-    def __init__(self, color, width, height,image='bate.png'):
+    def __init__(self, color, width, height,image='bate.png',mouse=True):
         pygame.sprite.Sprite.__init__(self) 
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
@@ -82,12 +100,16 @@ class Player(pygame.sprite.Sprite):
         # Update the position of this object by setting the values
         # of rect.x and rect.y
         self.rect = self.image.get_rect()
-        #self.cam = kinect_cam()
+        self.mouse=mouse
+        if not(self.mouse):
+            self.cam = CAM()
         return
     def update(self):
-        #self.cam.get_depth()
-        #pos=[cam.x,cam.y]
-        pos = pygame.mouse.get_pos()            
+        if not(self.mouse):
+            self.cam.get_cam()
+            pos=[2*self.cam.x,2*self.cam.y]
+        else:
+            pos = pygame.mouse.get_pos()            
         self.rect.x = pos[0]
         self.rect.y = pos[1]   
         
@@ -124,11 +146,12 @@ class Item(pygame.sprite.Sprite):
         return  
 ##############################################################################################
 class mainGame(threading.Thread):
-    def __init__(self,screen_width = 640, screen_height = 480,N=10, image1='frog2.png',  image2='frog2.png'):
+    def __init__(self,screen_width = 640, screen_height = 480,N=10, image1='frog2.png',  image2='frog2.png',mouse=True):
         #Initialize Pygame
         threading.Thread.__init__(self)
         # Set the height and width of the screen
         self.N=N
+        self.mouse = mouse
         self.screen_width   = screen_width
         self.screen_height  = screen_height
         self.image1         = image1
@@ -136,10 +159,10 @@ class mainGame(threading.Thread):
         self.stop           = True
         self.doneSesion     = False
         self.MainWindow     = None
-        self.engine         = pyttsx.init()                  #se inicializa un objeto tipo pyttsx
-        voices = self.engine.getProperty('voices')           #optenemos la lista de voces
-        spanish=voices[20]                                   #seleccionamos la 20 o 19, para espanol
-        self.engine.setProperty('voice', spanish.id)         #ponemos espanol como voz a usar
+        #self.engine         = pyttsx.init()                  #se inicializa un objeto tipo pyttsx
+        #voices = self.engine.getProperty('voices')           #optenemos la lista de voces
+        #spanish=voices[20]                                   #seleccionamos la 20 o 19, para espanol
+        #self.engine.setProperty('voice', spanish.id)         #ponemos espanol como voz a usar
         
     def initGame(self):
         pygame.init()
@@ -181,7 +204,8 @@ class mainGame(threading.Thread):
             self.block_list.add(block)
             self.all_sprites_list.add(block) 
         # Create a player block
-        self.player = Player(RED, 20, 15)
+        self.player = Player(RED, 20, 15,mouse=self.mouse)
+
         self.all_sprites_list.add(self.player)
 
         self.doneSesion = False
@@ -215,8 +239,8 @@ class mainGame(threading.Thread):
                         self.block_list.add(block)
                         self.all_sprites_list.add(block)
                         self.NotScore += 1
-                        self.engine.say("No")
-                        self.engine.runAndWait()  
+                        #self.engine.say("No")
+                        #self.engine.runAndWait()  
                     
                 else:                
                         self.score += 1
@@ -233,7 +257,7 @@ class mainGame(threading.Thread):
             pygame.display.flip()
  
             # Limit to 60 frames per second
-            self.clock.tick(60)
+            self.clock.tick(40)
  
         self.quit()
     
@@ -243,6 +267,8 @@ class mainGame(threading.Thread):
             if not self.doneSesion:
                 self.initGame()
                 self.startGame()
+
+
 #################################################################################################
 #### camera functions
 class CAM(): 
@@ -264,11 +290,13 @@ class CAM():
         self.kernel        = np.ones((5, 5), np.uint8)
         self.x             = 0
         self.y             = 0
+        self.buffer        = 10
+        self.pts           = deque(maxlen=self.buffer)
         #webcam
-        self.cap = cv2.VideoCapture(0)
+        self.cam = cv2.VideoCapture(0)
     #function to get RGB image from webcam    
     def get_cam(self):
-        _, self.rgb = cap.read()
+        _, self.rgb = self.cam.read()
         if self.rgb is None:
            self.rgb = np.array([])
         elif self.convert_rgb:                   
@@ -276,6 +304,7 @@ class CAM():
            mask         = cv2.inRange(hsv, lower, upper)
            res          = cv2.bitwise_and(self.rgb,self.rgb, mask= mask)
            self.gray    = cv2.cvtColor(res,cv2.COLOR_BGR2GRAY)    
+           self.gray = cv2.flip( self.gray, 1 )
            self.process()
         return 
   
@@ -299,7 +328,8 @@ class CAM():
     def process(self):
         
         if self.filter:
-                self.gray   = cv2.GaussianBlur(self.gray,(self.filterSize,self.filterSize),0)
+                pass
+                #self.gray   = cv2.GaussianBlur(self.gray,(self.filterSize,self.filterSize),0)
                 
         _,self.img_wb = cv2.threshold(self.gray, self.trh, 255, cv2.THRESH_BINARY)
         self.img_wb = cv2.morphologyEx(self.img_wb, cv2.MORPH_CLOSE, self.kernel)
@@ -316,9 +346,11 @@ class CAM():
             try:
              cX = int(M["m10"] / M["m00"])
              cY = int(M["m01"] / M["m00"])
-             self.x=cX
-             self.y=cY
+             self.pts.appendleft((cX,cY))
+             
             except:
              pass
-                      
+        if (len(self.pts) == self.buffer):
+              self.x=np.mean(self.pts[0])
+              self.y=np.mean(self.pts[1])            
         return 

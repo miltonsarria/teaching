@@ -21,7 +21,7 @@ k = cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 
-#color = np.uint8([[[255,0,0 ]]])
-#hsv = cv2.cvtColor(color,cv2.COLOR_BGR2HSV)
-#print hsv
+color = np.uint8([[[38,22,0 ]]])
+hsv = cv2.cvtColor(color,cv2.COLOR_BGR2HSV)
+print hsv
 
