@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 
 file1='artificial_data.h5'
 file2='artificial_data_test.h5'
-########### cargar datos de entrenamiento y datos de prueba
+########### cargar datos de entrenamiento y datos de prueba###########
 hf = h5py.File(file1, "r")
 X1 = np.array(hf.get('X1')); Y1=np.array(hf.get('lab1'));
 X2 = np.array(hf.get('X2')); Y2=np.array(hf.get('lab2'));
@@ -13,18 +13,29 @@ hf.close()
 #datos de entrenamiento
 X=np.vstack((X1,X2))
 Y=np.append(np.zeros(Y1.size).astype(int),np.ones(Y2.size).astype(int))
+#Y=np.hstack((Y1,Y2))
 
 hf = h5py.File(file2, "r")
 #datos de prueba
 X1t = np.array(hf.get('X1')); Y1=np.array(hf.get('lab1'));
 X2t = np.array(hf.get('X2')); Y2=np.array(hf.get('lab2'));
+
+X_test=np.vstack((X1t,X2t))
+Y_test=np.append(np.zeros(Y1.size).astype(int),np.ones(Y2.size).astype(int))
+#Y_test=np.hstack((Y1,Y2))
 hf.close()
-
+##################################################################
 #graficar
-plt.figure(1)
-plt.plot(X1[:,0],X1[:,1],'ob')
-plt.plot(X2[:,0],X2[:,1],'or')
 
+labels=np.unique(Y)
+plt.figure(1)
+color='rgbkgycm'
+
+for ii in labels:
+        key = 'o'+color[ii]  
+        plt.plot(X[Y==ii,0],X[Y==ii,1],key)
+
+plt.show()
 #crear un clasficador
 clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial')
 clf.fit(X,Y)

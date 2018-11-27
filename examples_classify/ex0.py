@@ -5,7 +5,7 @@ import h5py
 
 
 #generar puntos de entrenamiento 
-N=[100,100,100,100]
+N=[500,500,500,500]
 mvalues=np.array([[0.5,0.5],[4,4],[1,3],[4,1]])
 std = [0.5,0.4,0.4,0.6]
 X1=np.array([])
@@ -33,7 +33,7 @@ for ii in range(len(N)):
       X2= x
     else:
       X2=np.vstack((X2,x))
-    y=np.ones(N[ii])*ii; 
+    y=np.ones(N[ii])*ii+len(N); 
     Y2= np.append(Y2,y)
 Y2=Y2.astype(int)    
 
@@ -41,7 +41,7 @@ Y2=Y2.astype(int)
 
 
 
-hf = h5py.File('artificial_data_test.h5', "w") #handle file
+hf = h5py.File('artificial_data.h5', "w") #handle file
 dset = hf.create_dataset('X1', data=X1)
 dset = hf.create_dataset('lab1', data=Y1)
 dset = hf.create_dataset('X2', data=X2)
