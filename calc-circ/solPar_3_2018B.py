@@ -98,20 +98,23 @@ for ii in np.arange(x.shape[0]):
     print('Z=', Z, '; Polar:  |Z|=', np.abs(Z),'   theta=', np.angle(Z, deg=True))
     
     #3) 
-    print('3)---------------')
+    print('3)---------------')    
     M  = 1j*(A+B)
-    Zc = -1j*(A*B)
-    R  = 3*A
+    Z1 = 3*A
+    Z2 = -1j*(A*B)
+    Z3 = 1j*3*B
+    Z4 = 1j*A*B
+    Z5 = A*B
     V  = 10*A*B
     
-    AA =np.array([[R+Zc+1j*6,  -(1j*6+M)],\
-                 [-(1j*6+M)  ,  1j*14+2*M+R]])
+    AA =np.array([[Z1+Z2+Z3,  -(Z3+M)],\
+                 [-(Z3+M)  ,  Z3+Z4+Z5+2*M]])
                  
-    A1=np.array([[V    ,  -(1j*6+M)],\
-                 [0.0  ,  1j*14+2*M+R]])
+    A1=np.array([[V    ,  -(Z3+M)],\
+                 [0.0  ,  Z3+Z4+Z5+2*M]])
                  
-    A2=np.array([[R+Zc+1j*6,  V],\
-                 [-(1j*6+M) ,  0.0]]) 
+    A2=np.array([[Z1+Z2+Z3,  V],\
+                 [-(Z3+M) ,  0.0]]) 
      
     detA =np.linalg.det(AA)
     detA1=np.linalg.det(A1)
