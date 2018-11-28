@@ -56,13 +56,14 @@ for ii in np.arange(x.shape[0]):
     ZCA=B+1j*10*A        
     
     theta=10*A
-    #calcular voltaje de linea
-    Van=Vp*unitC(theta)    
-    VAB=r3*Vp*unitC(theta+30)
-    angle_VAB=np.angle(VAB,deg=True)
+    #calcular voltaje de linea usando el de fase
+    Van=Vp*unitC(theta)
+    Vbn=Vp*unitC(theta-120)  
+    Vcn=Vp*unitC(theta+120)
     
-    VBC=r3*Vp*unitC(angle_VAB+120)
-    VCA=r3*Vp*unitC(angle_VAB+240)
+    VAB=Van-Vbn
+    VBC=Vbn-Vcn
+    VCA=Vcn-Van
     #calcular corrientes sobre cada impedancia            
     IAB=VAB/ZAB
     IBC=VBC/ZBC
@@ -77,6 +78,8 @@ for ii in np.arange(x.shape[0]):
 
     print('1)---------------')   
     print('VAB:   ', np.abs(VAB),np.angle(VAB, deg=True))
+    print('VBC:   ', np.abs(VBC),np.angle(VBC, deg=True))
+    print('VCA:   ', np.abs(VCA),np.angle(VCA, deg=True))
     print('IAB: C ',IAB,' P:' ,np.abs(IAB),np.angle(IAB, deg=True))
     print('IBC: C ',IBC,' P:' ,np.abs(IBC),np.angle(IBC, deg=True))
     print('ICA: C ',ICA,' P:' ,np.abs(ICA),np.angle(ICA, deg=True))
@@ -122,7 +125,7 @@ for ii in np.arange(x.shape[0]):
     
     I1=detA1/detA
     I2=detA2/detA
-    Vo = R*I2
+    Vo = Z5*I2
     print(AA)
     print('I1', I1, 'Polar: ',np.abs(I1),np.angle(I1, deg=True))
     print('I2', I2, 'Polar: ',np.abs(I2),np.angle(I2, deg=True))
