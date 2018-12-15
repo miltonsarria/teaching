@@ -5,7 +5,7 @@ Maria Constanza Torres Madroñero
 Milton Orlando Sarria Paja
 Ing. Electronica
 Universidad Nacional de Colombia
-Septiembre 2005
+
 *******************************************************************************/
 
 #include <conio.h>

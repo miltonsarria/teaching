@@ -1,6 +1,6 @@
 #Milton Orlando Sarria
 #Procesamiento digital de senales
-#USC
+
 
 #Manejo de secuencias discretas usando Python
 #Es necesario usar dos paquetes, numpy y matplotlib, son herramientas que ya vienen por defecto con el 
