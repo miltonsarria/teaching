@@ -94,7 +94,7 @@ ax.set_autoscaley_on(True)
 ax.set_ylim(-1, 1)
 
 readObj.start() #iniciar hilo para lectura de datos
-ani = FuncAnimation(fig, update, interval=500)
+ani = FuncAnimation(fig, update, interval=500) #actualizar la grafica cada 500 ms
 plt.show()
 
 readObj.kill()
