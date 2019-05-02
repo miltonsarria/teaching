@@ -20,5 +20,7 @@ f, t, Sxx = signal.spectrogram(x, fs)
 plt.pcolormesh(t, f, np.log10(Sxx))
 plt.ylabel('Frequencia [Hz]')
 plt.xlabel('Tiempo [sec]')
+
+
 plt.show()
 

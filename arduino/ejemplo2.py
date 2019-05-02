@@ -67,7 +67,7 @@ class comObj(threading.Thread):
 
 
 def update(i):
-    buffersize = 256
+    buffersize = 1000
     y_b   = np.array([])
     x_b   = np.array([])
     if readObj.dataCount>0:    

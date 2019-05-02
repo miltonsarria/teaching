@@ -12,14 +12,18 @@ def genSine(A, f, phi, fs, t):
                 La funcion debe retornar un arreglo tipo numpy
                 x (numpy array) = la sinusoidal generada (use np.cos())
         """
-        if f < 2*fs:
-           print "Warning: Habra aliasing en la secuencia"
+        if f > fs/2.0:
+           print "Warning: se presenta aliasing en la secuencia"
         x=[]
         ## su código va aqui
         
         return x   
            
 ##########################################################
-A=1.0; f = 10.0; phi = 1.0; fs = 50.0; t =0.1;
+A   = 1.0;     #amplitud
+f   = 10.0;    #frecuencia de la onda
+phi = 1.0;     #fase
+fs  = 50.0;    #frecuencia de muestreo
+t   = 0.1;     #duracion
 x=genSine(A, f, phi, fs, t)
 print(x)

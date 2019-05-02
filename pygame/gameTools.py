@@ -325,8 +325,7 @@ class CAM():
         self.process()
         return    
     #pre-process image
-    def process(self):
-        
+    def process(self):        
         if self.filter:
                 pass
                 #self.gray   = cv2.GaussianBlur(self.gray,(self.filterSize,self.filterSize),0)

@@ -11,13 +11,13 @@ def genComplexSine(k, N):
         cSine (numpy array) = la sinusoidal compleja (longitud N)
     """
     ## Su codigo va aqui
-    cSine = []
-
+    cSine = 0
+    
     return cSine
            
 ##########################################################    
 N=5; k = 1;
-cSine=genComplexSine(N, k)
+cSine=genComplexSine(k, N)
 print(cSine)    
 
 

@@ -29,7 +29,7 @@ int main()
     
     printf("Datos del estudiante:\n");
     printf("Nombre  : %s\n", estudiante1.nombre);
-    printf("Carrera : %s\n", estudiante1.nombre);
+    printf("Carrera : %s\n", estudiante1.carrera);
     printf("Edad    : %d\n", estudiante1.edad);
     printf("Promedio: %2.2f\n\n", estudiante1.promedio);
     
@@ -39,9 +39,6 @@ int main()
     estudiante1.promedio=3.1;
     strcpy(estudiante1.nombre,"Maria Molina");
     strcpy(estudiante1.carrera,"Ing. Electronica");
-    
-    
-    
-    
+     
 return 1;
 }

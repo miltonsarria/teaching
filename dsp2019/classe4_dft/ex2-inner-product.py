@@ -19,7 +19,7 @@ plt.title('x = [1,1,1,1,-1,-1,-1,-1]', fontsize=18)
 #realizar el proceso para 8 sinusoidales complejas, k=0, 1, 2...7   (N-1)
 for k in range(8):
   s = np.exp(-1j*2*np.pi*k/N*np.arange(N))
-  X = sum(x*s)
+  X = x @ s #sum(x*s)
   mX = np.append(mX, np.abs(X))
   pX = np.append(pX, np.angle(X))
 

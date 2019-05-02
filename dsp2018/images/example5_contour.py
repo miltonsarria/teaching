@@ -37,7 +37,7 @@ while(True):
           y=cY
           # draw the contour and center of the shape on the image             
           cv2.drawContours(frame, [c], -1, (0, 255, 0), 2)
-          cv2.circle(frame, (cX, cY), 7, (255, 255, 255), -1)
+          cv2.circle(frame, (cX, cY), 7, (0, 0, 255), -1)
                 
         except:
              pass        

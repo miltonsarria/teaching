@@ -9,10 +9,10 @@
 
 int main()
 {
- int fc[3],s,c,op,c1,l1,tm;
+ int fc[3],s,c,op,c1,tm;
  float fil[13][13];
  int brillo,contraste,i,j;
- char nombre1[12],nombre2[12],nombrea[12];
+ char nombre1[12],nombre2[12];
  //-----------------memoria dinamica
  // filas y columnas
  int m = 1000,n = 1000;
@@ -38,28 +38,23 @@ int main()
  scanf("%s",nombre2);
  //modificar para que nombre 1 sea diferente de nombre2
  //operaciones a relizar
- printf("ingrese el umbral: ");
- int umbral;
- scanf("%d",&umbral);
+ //modificar el siguiente codigo para
+ //-aplicar brillo y contraste
+ //-umbralizar
  for (i=0;i<fc[0];i++)
     {
     for(j=0;j<fc[1];j++)
         {
-         if(mat[i][j]>umbral) mat[i][j]=255;
-         else mat[i][j]=0;
+         mat[i][j]=255-mat[i][j];
         }
      }
  ///////////////////////////////////////////////////////////////////////////////
-
- l1=strlen(nombre2);
- for(i=0;i<l1;i++)
- nombrea[i]=nombre2[i];
 
  strcat(nombre2,ext);
  //juntar(nombre2,ext);
  s=salvar(nombre1,nombre2,mat,fc);
 
- printf("Finalizado, press. ENTER.....");
+ printf("Finalizado, press. ENTER.....\n");
  getchar();
  Matrix_Free(mat,m);
  return 1;

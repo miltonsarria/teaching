@@ -12,9 +12,9 @@ import sounddevice as sd
 from scipy import signal
 from scipy.fftpack import fft
 import math
-from scikits.talkbox.spectral.basic import arspec
+#from scikits.talkbox.spectral.basic import arspec
 import sys
-
+from scipy.signal import get_window
 
 try:
     import Queue as queue
@@ -48,7 +48,11 @@ def update_plot(frame):
     line1.set_data(t,plotdata[:, 0])
     
     #compute spectrum in dB of plotdata using FFT algorithm
-    X=fft(plotdata[:, 0])
+    x=plotdata[:, 0]
+    w    = get_window(window_w, x.size)  
+    w    = w / sum(w) 
+    x=x*w    
+    X=fft(x)
     absX = abs(X)/(X.size)
     #fase
     #numero de muestras hasta la mitad del espectro
@@ -59,17 +63,16 @@ def update_plot(frame):
     
     F=np.linspace(0,samplerate/2.,Xdb.size)
     line2.set_data(F,Xdb)
-    #compute spectrum using auto regresive model (LPC - model)
-    px2, fx2 = arspec(plotdata[:, 0] * signal.hamming((plotdata[:, 0]).size) , order = 20, fs=samplerate)
-    line3.set_data(fx2,10 * np.log10(px2))
     
-    return [line1,line2,line3]
+    
+    return [line1,line2]
     
 #################################################################
 #to save data from stream in a separate thread
 q = queue.Queue()
 
 #define important parameters
+window_w   = 'hamming'
 window     = 500    #miliseconds
 samplerate = 16000  #khz
 downsample = 1      #show every 'downsample' samples
@@ -88,7 +91,7 @@ fig = plt.figure()
 
 line1 = Line2D([], [], color='black')
 line2 = Line2D([], [], color='green',linewidth=2)
-line3 = Line2D([], [], color='red',linewidth=2)
+
         
 ax1  = fig.add_subplot(2,1,1)
 
@@ -101,7 +104,7 @@ ax2.set_xlim(0, samplerate/2)
 
 ax1.add_line(line1)
 ax2.add_line(line2)
-ax2.add_line(line3)
+
 
 #maping to separate channels
 mapping = [c - 1 for c in channels] 

@@ -16,7 +16,7 @@ def compDFT(x):
     return X
     
 ##########################################################    
-x = np.array([1, 2, 3, 4]),
-X=compDFT(x)
-print(X)    
+x = np.array([1, 2, 3, 4]) #secuencia en el dominio del tiempo
+X=compDFT(x)               #aplicar transformada de fourier
+print(X)                   #imprimir los resultados
 

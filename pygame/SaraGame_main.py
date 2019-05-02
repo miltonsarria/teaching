@@ -9,8 +9,8 @@ from gameTools import *
         
 def main():    
     mouse=True
-    screen_width =  900 
-    screen_height = 500
+    screen_width =  1000 
+    screen_height = 700
     N=8
     image1='Globo2.png' 
     image2='frog1.png'
